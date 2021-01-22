@@ -24,6 +24,10 @@
               "src/assets"
             ],
             "styles": [
+              "../BursaTransport/node_modules/bootstrap/scss/bootstrap.scss",
+              "../BursaTransport/node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "../BursaTransport/node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+              "../BursaTransport/node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
               "src/styles.css"
             ],
             "scripts": []
