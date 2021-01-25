@@ -1,51 +1,73 @@
 <div class="row">
-    <div class="col-md-6 offset-md-3 mt-4">
-        <form>
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="registerNumeCompanie"
-                           class="form-label">Nume Companie</label>
-                    <input type="text"
-                           class="form-control"
-                           id="registerNumeCompanie"
-                           placeholder="Intoduce numele companiei">
-                </div>
-                <div class="col-md-4">
-                    <label for="registerAdresaCompanie"
-                           class="form-label">Adresa Companie</label>
-                    <input type="text"
-                           class="form-control"
-                           id="registerAdresaCompanie"
-                           placeholder="Intoduce adresa companiei">
-                </div>
-                <div class="col-md-4">
-                    <label for="registerCuiCompanie"
-                           class="form-label">C.U.I. Companie</label>
-                    <input type="text"
-                           class="form-control"
-                           id="registerCuiCompanie"
-                           placeholder="Intoduce codul unic de inregistrare companiei">
-                </div>
-            </div>
+       <div class="col-md-6 offset-md-3 mt-4">
+              <form #f="ngForm"
+                    (ngSubmit)="onSubmit(f)">
+                     <div class="row">
+                            <div class="col-md-4">
+                                   <label for="registerNumeCompanie"
+                                          class="form-label">Nume Companie</label>
+                                   <input type="text"
+                                          name="registerNumeCompanie"
+                                          ngModel
+                                          required
+                                          #registerNumeCompanie="ngModel"
+                                          class="form-control"
+                                          id="registerNumeCompanie"
+                                          placeholder="Intoduce numele companiei">
+                            </div>
+                            <div class="col-md-4">
+                                   <label for="registerAdresaCompanie"
+                                          class="form-label">Adresa Companie</label>
+                                   <input type="text"
+                                          name="registerAdresaCompanie"
+                                          ngModel
+                                          required
+                                          #registerAdresaCompanie="ngModel"
+                                          class="form-control"
+                                          id="registerAdresaCompanie"
+                                          placeholder="Intoduce adresa companiei">
+                            </div>
+                            <div class="col-md-4">
+                                   <label for="registerCuiCompanie"
+                                          class="form-label">C.U.I. Companie</label>
+                                   <input type="text"
+                                          class="form-control"
+                                          name="registerCuiCompanie"
+                                          ngModel
+                                          required
+                                          #registerCuiCompanie="ngModel"
+                                          id="registerCuiCompanie"
+                                          placeholder="Intoduce codul unic de inregistrare companiei">
+                            </div>
+                     </div>
 
 
 
-            <div class="mb-3">
-                <label for="registerEmail"
-                       class="form-label">Adresa de email</label>
-                <input type="email"
-                       class="form-control"
-                       id="registerEmail">
-            </div>
-            <div class="mb-3">
-                <label for="registerPassword"
-                       class="form-label">Parola</label>
-                <input type="password"
-                       class="form-control"
-                       id="registerPassword">
-            </div>
-            <button type="submit"
-                    class="btn btn-primary">Confirma <i class="fas fa-paper-plane"></i></button>
-        </form>
-    </div>
+                     <div class="mb-3">
+                            <label for="registerEmail"
+                                   class="form-label">Adresa de email</label>
+                            <input type="email"
+                                   name="email"
+                                   ngModel
+                                   required
+                                   #email="ngModel"
+                                   class="form-control"
+                                   id="registerEmail">
+                     </div>
+                     <div class="mb-3">
+                            <label for="registerPassword"
+                                   class="form-label">Parola</label>
+                            <input type="password"
+                                   name="password"
+                                   ngModel
+                                   required
+                                   #password="ngModel"
+                                   class="form-control"
+                                   id="registerPassword">
+                     </div>
+                     <button type="submit"
+                             [disabled]="f.invalid"
+                             class="btn btn-primary">Confirma <i class="fas fa-paper-plane"></i></button>
+              </form>
+       </div>
 </div>
