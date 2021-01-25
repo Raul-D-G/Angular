@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-  authUrl = "endpoint";
+  authUrl = "";
 
   constructor(private http: HttpClient) { }
 
