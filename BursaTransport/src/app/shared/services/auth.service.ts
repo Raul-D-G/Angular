@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-  authUrl = "";
+  authUrl = "http://localhost:3000/api/users/";
 
   constructor(private http: HttpClient) { }
 
@@ -15,8 +15,11 @@ export class AuthService {
     return this.http.post(this.authUrl + 'login', model).pipe(
       map((response: any) => {
         const user = response;
-        if (user.result.succeeded) {
-          localStorage.setItem('token', user.token);
+
+        if (user.success) {
+          console.log(user.token);
+
+          // localStorage.setItem('token', user.token);
         }
       })
     )
