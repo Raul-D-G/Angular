@@ -15,6 +15,7 @@ export class AuthService {
     return this.http.post(this.authUrl + 'login', model).pipe(
       map((response: any) => {
         const user = response;
+        console.log(user);
 
         if (user.success) {
           console.log(user.token);
