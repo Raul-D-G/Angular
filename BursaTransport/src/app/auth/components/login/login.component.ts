@@ -14,13 +14,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(f: NgForm) {
+  onSubmit(loginForm: NgForm) {
 
     const loginObserver = {
       next: x => console.log('User login'),
       error: err => console.error(err)
     }
-    this.authService.login(f.value).subscribe(loginObserver);
+    this.authService.login(loginForm.value).subscribe(loginObserver);
   }
 
 }
