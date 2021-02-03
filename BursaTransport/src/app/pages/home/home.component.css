@@ -1,0 +1,14 @@
+.home-main-row{
+    background-image: url("../../../assets/img/back2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.home-image-wrapper{
+    overflow: hidden;
+}
+.home-image-wrapper img{
+    display: block;
+    margin: auto;
+    width:150%;
+}
