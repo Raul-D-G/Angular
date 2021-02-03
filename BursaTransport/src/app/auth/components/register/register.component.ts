@@ -2,6 +2,7 @@ import { ProgressBarService } from './../../../shared/services/progress-bar.serv
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService, public progressBar: ProgressBarService) { }
+  constructor(private authService: AuthService, public progressBar: ProgressBarService, private alertService: AlertService) { }
 
   ngOnInit(): void {
   }
@@ -21,14 +22,16 @@ export class RegisterComponent implements OnInit {
     const registerObserver = {
 
       next: x => {
-        console.log('User nou', x);
-        this.progressBar.completeLoading();
         this.progressBar.setSuccess();
+        console.log('User nou', x);
+        this.alertService.success('Inregistrare Reusita!');
+        this.progressBar.completeLoading();
       },
       error: err => {
-        console.error(err);
-        this.progressBar.completeLoading();
         this.progressBar.setError();
+        console.error(err);
+        this.alertService.danger('Inregistrare esuata!');
+        this.progressBar.completeLoading();
       }
     }
     this.authService.register(registerform.value).subscribe(registerObserver);
