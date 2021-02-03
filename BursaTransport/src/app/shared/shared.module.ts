@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertModule } from 'ngx-alerts';
+import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 
 @NgModule({
   declarations: [ColumnOneComponent, HeaderComponent],
@@ -16,7 +17,10 @@ import { AlertModule } from 'ngx-alerts';
     NgProgressModule,
     BrowserModule,
     BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),
+
     AlertModule.forRoot({ maxMessages: 5, timeout: 3000, positionX: 'right' })
+
   ],
   exports: [
     ColumnOneComponent
