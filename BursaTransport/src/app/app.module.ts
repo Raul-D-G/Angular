@@ -7,18 +7,22 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { HomeComponent } from './pages/home/home.component';
+import { CompanieModule } from './companie/companie.module';
+import { CompanieComponent } from './pages/companie/companie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CompanieComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     AuthModule,
-    HttpClientModule
+    HttpClientModule,
+    CompanieModule
   ],
   providers: [],
   bootstrap: [AppComponent]
