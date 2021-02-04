@@ -1,3 +1,4 @@
+import { AuthGuard } from './../guards/auth-guard.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
