@@ -11,7 +11,10 @@ import { AlertService } from 'ngx-alerts';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private progress: NgProgress, public progressBar: ProgressBarService, public authService: AuthService,
+  constructor(
+    private progress: NgProgress,
+    public progressBar: ProgressBarService,
+    public authService: AuthService,
     private alertService: AlertService) { }
 
   ngOnInit(): void {

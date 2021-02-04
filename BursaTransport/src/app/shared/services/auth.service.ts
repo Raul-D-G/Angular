@@ -18,12 +18,10 @@ export class AuthService {
     return this.http.post(this.authUrl + '/login', model).pipe(
       map((response: any) => {
         const user = response;
-        // console.log(user);
         if (user.success) {
           localStorage.setItem('token', user.token);
           this.decodedToken = this.helper.decodeToken(user.token);
 
-          // console.log(this.decodedToken);
 
         }
       })
@@ -35,7 +33,7 @@ export class AuthService {
   }
 
 
-  loggedIn() {
+  isLoggedIn() {
     const token = localStorage.getItem('token');
     return !this.helper.isTokenExpired(token);
   }

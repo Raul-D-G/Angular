@@ -21,12 +21,12 @@
             <ul class="navbar-nav ms-auto headerNav">
                 <li class="nav-item">
                     <a class="nav-link"
-                       *ngIf="!authService.loggedIn()"
+                       *ngIf="!authService.isLoggedIn()"
                        [routerLink]="['login']"
                        routerLinkActive="active">Autentificare</a>
                 </li>
                 <li class="nav-item dropdown"
-                    *ngIf="authService.loggedIn()"
+                    *ngIf="authService.isLoggedIn()"
                     dropdown>
                     <a class="nav-link dropdown-toggle"
                        dropdownToggle>

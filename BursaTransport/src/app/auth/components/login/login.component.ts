@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { AlertService } from 'ngx-alerts';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,11 @@ import { AlertService } from 'ngx-alerts';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, public progressBar: ProgressBarService, private alertService: AlertService) { }
+  constructor(
+    private authService: AuthService,
+    public progressBar: ProgressBarService,
+    private alertService: AlertService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -23,13 +28,12 @@ export class LoginComponent implements OnInit {
     const loginObserver = {
       next: x => {
         this.progressBar.setSuccess();
-        console.log('User login');
         this.alertService.success('Autentificare Reusita!');
         this.progressBar.completeLoading();
+        this.router.navigateByUrl('/companie');
       },
       error: err => {
         this.progressBar.setError();
-        console.error(err);
         this.alertService.danger(err.error);
         this.progressBar.completeLoading();
       }
