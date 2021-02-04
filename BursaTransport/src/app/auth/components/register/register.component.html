@@ -1,73 +1,74 @@
-<div class="row">
-       <div class="col-md-6 offset-md-3 mt-4">
-              <form #registerform="ngForm"
-                    (ngSubmit)="onSubmit(registerform)">
-                     <div class="row">
-                            <div class="col-md-4">
-                                   <label for="numeCompanie"
-                                          class="form-label">Nume Companie</label>
-                                   <input type="text"
-                                          name="numeCompanie"
-                                          ngModel
-                                          required
-                                          #numeCompanie="ngModel"
-                                          class="form-control"
-                                          id="numeCompanie"
-                                          placeholder="Intoduce numele companiei">
-                            </div>
-                            <div class="col-md-4">
-                                   <label for="adresac"
-                                          class="form-label">Adresa Companie</label>
-                                   <input type="text"
-                                          name="adresaCompanie"
-                                          ngModel
-                                          required
-                                          #adresaCompanie="ngModel"
-                                          class="form-control"
-                                          id="adresaCompanie"
-                                          placeholder="Intoduce adresa companiei">
-                            </div>
-                            <div class="col-md-4">
-                                   <label for="cuiCompanie"
-                                          class="form-label">C.U.I. Companie</label>
-                                   <input type="text"
-                                          class="form-control"
-                                          name="cuiCompanie"
-                                          ngModel
-                                          required
-                                          #cuiCompanie="ngModel"
-                                          id="cuiCompanie"
-                                          placeholder="Intoduce codul unic de inregistrare companiei">
-                            </div>
+<div id="back">
+       <div class="container">
+              <div class="row">
+                     <div class="col-md-6 offset-md-3 mt-4">
+                            <form #registerform="ngForm"
+                                  (ngSubmit)="onSubmit(registerform)">
+                                   <div class="row">
+                                          <div class="col-md-4">
+                                                 <label for="numeCompanie"
+                                                        class="form-label">Nume Companie</label>
+                                                 <input type="text"
+                                                        name="numeCompanie"
+                                                        ngModel
+                                                        required
+                                                        #numeCompanie="ngModel"
+                                                        class="form-control"
+                                                        id="numeCompanie"
+                                                        placeholder="Intoduce numele companiei">
+                                          </div>
+                                          <div class="col-md-4">
+                                                 <label for="adresac"
+                                                        class="form-label">Adresa Companie</label>
+                                                 <input type="text"
+                                                        name="adresaCompanie"
+                                                        ngModel
+                                                        required
+                                                        #adresaCompanie="ngModel"
+                                                        class="form-control"
+                                                        id="adresaCompanie"
+                                                        placeholder="Intoduce adresa companiei">
+                                          </div>
+                                          <div class="col-md-4">
+                                                 <label for="cuiCompanie"
+                                                        class="form-label">C.U.I. Companie</label>
+                                                 <input type="text"
+                                                        class="form-control"
+                                                        name="cuiCompanie"
+                                                        ngModel
+                                                        required
+                                                        #cuiCompanie="ngModel"
+                                                        id="cuiCompanie"
+                                                        placeholder="Intoduce codul unic de inregistrare companiei">
+                                          </div>
+                                   </div>
+                                   <div class="mb-3">
+                                          <label for="mail"
+                                                 class="form-label">Adresa de email</label>
+                                          <input type="mail"
+                                                 name="mail"
+                                                 ngModel
+                                                 required
+                                                 #mail="ngModel"
+                                                 class="form-control"
+                                                 id="registerEmail">
+                                   </div>
+                                   <div class="mb-3">
+                                          <label for="parola"
+                                                 class="form-label">Parola</label>
+                                          <input type="password"
+                                                 name="parola"
+                                                 ngModel
+                                                 required
+                                                 #parola="ngModel"
+                                                 class="form-control"
+                                                 id="parola">
+                                   </div>
+                                   <button type="submit"
+                                           [disabled]="registerform.invalid"
+                                           class="btn btn-primary">Confirma <i class="fas fa-paper-plane"></i></button>
+                            </form>
                      </div>
-
-
-
-                     <div class="mb-3">
-                            <label for="mail"
-                                   class="form-label">Adresa de email</label>
-                            <input type="mail"
-                                   name="mail"
-                                   ngModel
-                                   required
-                                   #mail="ngModel"
-                                   class="form-control"
-                                   id="registerEmail">
-                     </div>
-                     <div class="mb-3">
-                            <label for="parola"
-                                   class="form-label">Parola</label>
-                            <input type="password"
-                                   name="parola"
-                                   ngModel
-                                   required
-                                   #parola="ngModel"
-                                   class="form-control"
-                                   id="parola">
-                     </div>
-                     <button type="submit"
-                             [disabled]="registerform.invalid"
-                             class="btn btn-primary">Confirma <i class="fas fa-paper-plane"></i></button>
-              </form>
+              </div>
        </div>
 </div>

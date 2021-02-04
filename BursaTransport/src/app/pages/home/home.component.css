@@ -1,8 +1,9 @@
 #home{
     background: url("../../../assets/img/back2.jpg") no-repeat center center fixed;
     display: table;
-    height: 100%;
+    height: calc(100vh - 210px);
     width: 100%;
     position: relative;
     background-size: cover;
-}   
+    padding-bottom: 2%;
+}
