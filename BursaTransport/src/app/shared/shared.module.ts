@@ -2,15 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ColumnOneComponent } from './layouts/column-one/column-one.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertModule } from 'ngx-alerts';
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [ColumnOneComponent, HeaderComponent],
+  declarations: [HeaderComponent, FooterComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -23,7 +23,8 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 
   ],
   exports: [
-    ColumnOneComponent
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }

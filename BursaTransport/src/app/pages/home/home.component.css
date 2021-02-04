@@ -1,14 +1,8 @@
-.home-main-row{
-    background-image: url("../../../assets/img/back2.jpg");
-    background-repeat: no-repeat;
+#home{
+    background: url("../../../assets/img/back2.jpg") no-repeat center center fixed;
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: relative;
     background-size: cover;
-    
-}
-.home-image-wrapper{
-    overflow: hidden;
-}
-.home-image-wrapper img{
-    display: block;
-    margin: auto;
-    width:150%;
-}
+}   
