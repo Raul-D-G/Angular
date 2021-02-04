@@ -1,5 +1,17 @@
 <div id="back">
-    <div class="container">
+    <div class="container-fluid text-center">
+        <div class="row content">
+            <div class="col-sm-2 sidenav">
+                <div class="btn-group-vertical">
+                    <button type="button"
+                            class="btn btn-lg btn-outline-info">Cauta Curse</button>
+                </div>
 
+            </div>
+            <div class="col-sm-8 text-left">
+                <h2>{{authService.decodedToken?.user.nume}}</h2>
+                <h4>Adresa: {{authService.decodedToken?.user.adresa}} C.U.I. {{authService.decodedToken?.user.cui}}</h4>
+            </div>
+        </div>
     </div>
 </div>
