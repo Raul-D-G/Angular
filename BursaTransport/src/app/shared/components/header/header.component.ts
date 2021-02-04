@@ -22,8 +22,10 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.alertService.success("Deconectare!");
+    this.authService.logout();
+    if (localStorage.getItem('token') == null) {
+      this.alertService.success("Deconectare!");
+    }
   }
 
 }
