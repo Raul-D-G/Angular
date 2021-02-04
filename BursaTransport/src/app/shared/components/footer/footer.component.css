@@ -12,7 +12,7 @@ footer{
 }
 
 .fab:hover{
-    color: #D5D5D5;
+    color:rgb(0, 89, 255);
     text-decoration: none;
 }
 
@@ -22,4 +22,15 @@ footer{
 .fas:hover {
     color: #D5D5D5;
     text-decoration: none;
+}
+
+#insta:hover {
+    color:deeppink;
+}
+#twit:hover{
+    color: rgb(0, 255, 255);
+}
+
+#goo:hover{
+    color: rgb(191, 255, 0);
 }
