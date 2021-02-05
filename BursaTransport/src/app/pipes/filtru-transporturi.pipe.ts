@@ -14,5 +14,4 @@ export class FiltruTransporturiPipe implements PipeTransform {
       return resultArray;
     }
   }
-
 }
