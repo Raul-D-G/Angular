@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card">
 
                 <div class="card-header">
@@ -26,13 +26,32 @@
                                    id="to"
                                    class="form-control">
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button"
+                                        class="btn btn-primary btn-block btn-sm"
+                                        (click)="filtru()">Cauta Transporturi</button>
+                                <button type="button"
+                                        class="btn btn-primary btn-block btn-sm"
+                                        (click)="clearFiltru()">Toate Transporturile</button>
+                            </div>
+                            <div class="col-md-6">
+                                <select id="select"
+                                        [(ngModel)]="sortParam"
+                                        [ngModelOptions]="{standalone: true}">
+                                    <option value="Pret">
+                                        Pret
+                                    </option>
+                                    <option value="Km">
+                                        Distanta
+                                    </option>
+                                </select>
+                                <button type="button"
+                                        class="btn btn-primary btn-block btn-sm"
+                                        (click)="onSortDirection()">Sorteaza</button>
+                            </div>
+                        </div>
 
-                        <button type="button"
-                                class="btn btn-primary btn-block btn-sm"
-                                (click)="filtru()">Cauta Transporturi</button>
-                        <button type="button"
-                                class="btn btn-primary btn-block btn-sm"
-                                (click)="clearFiltru()">Toate Transporturile</button>
                     </form>
                 </div>
             </div>
@@ -40,7 +59,7 @@
         <div class="col-md-8">
             <div class="cart_title">Transporturi disponibile
                 <div class="row"
-                     *ngFor="let transport of transportList|filtruTransporturi:scurse.taraIncarcare: 'taraIncarcare'|filtruTransporturi:scurse.taraDescarcare: 'taraDescarcare'">
+                     *ngFor="let transport of transportList|filtruTransporturi:scurse.taraIncarcare: 'taraIncarcare'|filtruTransporturi:scurse.taraDescarcare: 'taraDescarcare' | sortTransporturi:[sortParam,sortDirection]">
                     <app-transport [transportItem]="transport"></app-transport>
                 </div>
             </div>

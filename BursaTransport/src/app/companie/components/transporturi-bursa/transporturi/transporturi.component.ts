@@ -14,6 +14,8 @@ export class TransporturiComponent implements OnInit {
   transportList: Transport[] = [];
   curse = { taraIncarcare: '', taraDescarcare: '' };
   scurse = { taraIncarcare: '', taraDescarcare: '' };
+  sortParam = '';
+  sortDirection = 'asc';
 
   constructor(
     private transportService: TransportService,
@@ -25,11 +27,7 @@ export class TransporturiComponent implements OnInit {
 
   loadTransporturi() {
     this.transportService.getTransporturi().subscribe((transporturi) => {
-
       this.transportList = transporturi.results;
-
-      console.log(this.transportList);
-
     })
   }
 
@@ -43,6 +41,14 @@ export class TransporturiComponent implements OnInit {
     this.curse.taraDescarcare = '';
     this.scurse.taraDescarcare = '';
     this.scurse.taraIncarcare = '';
+  }
+
+  onSortDirection() {
+    if (this.sortDirection === 'asc') {
+      this.sortDirection = 'desc';
+    } else {
+      this.sortDirection = 'asc';
+    }
   }
 
 }

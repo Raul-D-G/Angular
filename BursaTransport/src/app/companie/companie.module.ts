@@ -7,10 +7,11 @@ import { TransporturiBursaComponent } from './components/transporturi-bursa/tran
 import { TransporturiComponent } from './components/transporturi-bursa/transporturi/transporturi.component';
 import { TransportComponent } from './components/transporturi-bursa/transporturi/transport/transport.component';
 import { FiltruTransporturiPipe } from '../pipes/filtru-transporturi.pipe';
+import { SortTransporturiPipe } from '../pipes/sort-transporturi.pipe';
 
 
 @NgModule({
-  declarations: [TransporturiBursaComponent, TransporturiComponent, TransportComponent, FiltruTransporturiPipe],
+  declarations: [TransporturiBursaComponent, TransporturiComponent, TransportComponent, FiltruTransporturiPipe, SortTransporturiPipe],
   imports: [
     CommonModule,
     CompanieRoutingModule,
