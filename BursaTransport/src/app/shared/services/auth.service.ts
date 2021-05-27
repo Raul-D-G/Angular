@@ -25,8 +25,6 @@ export class AuthService {
         if (user.success) {
           localStorage.setItem('token', user.token);
           this.decodedToken = this.helper.decodeToken(user.token);
-
-
         }
       })
     )

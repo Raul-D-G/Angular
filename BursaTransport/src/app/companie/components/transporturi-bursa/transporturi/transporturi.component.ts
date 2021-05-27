@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { TransportService } from "../../../../shared/services/transport.service";
-import { Transport } from "../../../../models/transport";
-import { DataService } from "../../../../shared/services/data.service";
+import { TransportService } from '../../../../shared/services/transport.service';
+import { Transport } from '../../../../models/transport';
 
 @Component({
   selector: 'app-transporturi',
   templateUrl: './transporturi.component.html',
-  styleUrls: ['./transporturi.component.css']
+  styleUrls: ['./transporturi.component.css'],
 })
-
 export class TransporturiComponent implements OnInit {
-
   transportList: Transport[] = [];
   curse = { taraIncarcare: '', taraDescarcare: '' };
-  scurse = { taraIncarcare: '', taraDescarcare: '' };
+
   sortParam = '';
   sortDirection = 'asc';
 
-  constructor(
-    private transportService: TransportService,
-    private data: DataService) { }
+  constructor(private transportService: TransportService) {}
 
   ngOnInit(): void {
     this.loadTransporturi();
@@ -28,27 +23,21 @@ export class TransporturiComponent implements OnInit {
   loadTransporturi() {
     this.transportService.getTransporturi().subscribe((transporturi) => {
       this.transportList = transporturi.results;
-    })
+    });
   }
 
-  filtru() {
-    this.scurse.taraIncarcare = this.curse.taraIncarcare;
-    this.scurse.taraDescarcare = this.curse.taraDescarcare;
+  filtru(ruta: any) {
+    this.curse.taraIncarcare = ruta.taraIncarcare;
+    this.curse.taraDescarcare = ruta.taraDescarcare;
   }
 
   clearFiltru() {
     this.curse.taraIncarcare = '';
     this.curse.taraDescarcare = '';
-    this.scurse.taraDescarcare = '';
-    this.scurse.taraIncarcare = '';
   }
 
-  onSortDirection() {
-    if (this.sortDirection === 'asc') {
-      this.sortDirection = 'desc';
-    } else {
-      this.sortDirection = 'asc';
-    }
+  onSortDirection(sort: any) {
+    this.sortDirection = sort.sortDirection;
+    this.sortParam = sort.sortParam;
   }
-
 }

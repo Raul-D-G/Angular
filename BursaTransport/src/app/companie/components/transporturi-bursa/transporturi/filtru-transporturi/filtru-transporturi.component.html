@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="card-header">
+    <strong>Filters</strong>
+  </div>
+
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="from">Tara Incarcare</label>
+        <input
+          type="text"
+          name="taraIncarcare"
+          [(ngModel)]="taraIncarcare"
+          id="taraIncarcare"
+          class="form-control"
+          placeholder="Introduceți tara pentru incarcare(Ex. Ro)"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="to">Tara Descarcare</label>
+        <input
+          type="text"
+          name="taraDescarcare"
+          [(ngModel)]="taraDescarcare"
+          id="taraDescarcare"
+          class="form-control"
+          placeholder="Introduceți tara pentru descarcare(Ex. Gr)"
+        />
+      </div>
+      <input type="submit" value="Cauta curse" class="btn btn-block" />
+    </form>
+    <app-button
+      color="{{ showAddTask ? 'red' : '#ffb42e' }}"
+      text="Toate transporturile"
+      (btnClick)="toateCursele()"
+    ></app-button>
+
+    <div class="col-md-8">
+      <select
+        id="select"
+        [(ngModel)]="sortParam"
+        [ngModelOptions]="{ standalone: true }"
+      >
+        <option value="Pret">Pret</option>
+        <option value="Km">Distanta</option>
+      </select>
+
+      <app-button
+        color="#ffb42e"
+        text="Sorteaza"
+        (btnClick)="onSortDirection()"
+      ></app-button>
+    </div>
+  </div>
+</div>
