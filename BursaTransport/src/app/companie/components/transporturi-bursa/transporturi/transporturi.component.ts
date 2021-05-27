@@ -22,7 +22,7 @@ export class TransporturiComponent implements OnInit {
 
   loadTransporturi() {
     this.transportService.getTransporturi().subscribe((transporturi) => {
-      this.transportList = transporturi.results;
+      this.transportList = transporturi;
     });
   }
 

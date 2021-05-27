@@ -10,7 +10,7 @@ export class FiltruTransporturiPipe implements PipeTransform {
       return value;
     } else {
       let resultArray = value.filter((obj) =>
-        obj[propertyName].toLowerCase().includes(search.toLocaleLowerCase())
+        obj[propertyName].toLowerCase().startsWith(search.toLocaleLowerCase())
       );
       return resultArray;
     }

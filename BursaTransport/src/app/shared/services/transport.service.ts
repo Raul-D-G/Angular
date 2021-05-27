@@ -12,12 +12,12 @@ export class TransportService {
 
   constructor(private http: HttpClient) {}
 
-  getTransporturi(): Observable<any> {
+  getTransporturi(): Observable<Transport[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.auth_token}`,
     });
 
-    return this.http.get<any>(this.transportUrl, { headers: headers });
+    return this.http.get<Transport[]>(this.transportUrl, { headers: headers });
   }
 }
