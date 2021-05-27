@@ -1,21 +1,30 @@
 export class Transport {
-    id: number;
-    tipMarfa: string;
-    taraIncarcare: string;
-    orasIncarcare: string;
-    taraDescarcare: string;
-    orasDescarcare: string;
-    pret: number;
-    km: number;
+  id: number;
+  tipMarfa: string;
+  taraIncarcare: string;
+  orasIncarcare: string;
+  taraDescarcare: string;
+  orasDescarcare: string;
+  pret: number;
+  km: number;
 
-    constructor(id: number, tipMarfa: string, taraIncarcare: string, orasIncarcare: string, taraDescarcare: string, orasDescarcare: string, pret: number, km: number) {
-        this.id = id;
-        this.tipMarfa = tipMarfa;
-        this.taraIncarcare = taraIncarcare;
-        this.orasIncarcare = orasIncarcare;
-        this.taraDescarcare = taraDescarcare;
-        this.orasDescarcare = orasDescarcare;
-        this.pret = pret;
-        this.km = km;
-    }
+  constructor(
+    id: number,
+    tipMarfa: string,
+    taraIncarcare: string,
+    orasIncarcare: string,
+    taraDescarcare: string,
+    orasDescarcare: string,
+    pret: number,
+    km: number
+  ) {
+    this.id = id;
+    this.tipMarfa = tipMarfa;
+    this.taraIncarcare = taraIncarcare;
+    this.orasIncarcare = orasIncarcare;
+    this.taraDescarcare = taraDescarcare;
+    this.orasDescarcare = orasDescarcare;
+    this.pret = pret;
+    this.km = km;
+  }
 }

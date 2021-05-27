@@ -1,36 +1,36 @@
-footer{
-    background-color: #23415C;
-    padding: 1% 5% 1% 5%;
-    color: #FFF;
-    height: 100px;
+footer {
+  background-color: #23415c;
+  padding: 1% 5% 1% 5%;
+  color: #fff;
+  height: 100px;
 }
 
-.fab{
-    padding: 5px 10px;
-    font-size: 25px;
-    color: #FFF;
+.fab {
+  padding: 5px 10px;
+  font-size: 25px;
+  color: #fff;
 }
 
-.fab:hover{
-    color:rgb(0, 89, 255);
-    text-decoration: none;
+.fab:hover {
+  color: rgb(0, 89, 255);
+  text-decoration: none;
 }
 
 .fas {
-    font-size: 60px;
+  font-size: 60px;
 }
 .fas:hover {
-    color: #D5D5D5;
-    text-decoration: none;
+  color: #d5d5d5;
+  text-decoration: none;
 }
 
 #insta:hover {
-    color:deeppink;
+  color: deeppink;
 }
-#twit:hover{
-    color: rgb(0, 255, 255);
+#twit:hover {
+  color: rgb(0, 255, 255);
 }
 
-#goo:hover{
-    color: rgb(191, 255, 0);
+#goo:hover {
+  color: rgb(191, 255, 0);
 }

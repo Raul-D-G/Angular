@@ -4,24 +4,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TransportService {
-
-  transportUrl = "http://localhost:3000/api/transporturi";
+  transportUrl = 'http://localhost:3000/api/transporturi';
   auth_token = localStorage.getItem('token');
 
-
-
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getTransporturi(): Observable<any> {
-
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.auth_token}`
-    })
+      Authorization: `Bearer ${this.auth_token}`,
+    });
 
     return this.http.get<any>(this.transportUrl, { headers: headers });
   }

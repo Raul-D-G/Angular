@@ -13,13 +13,13 @@
         <div
           class="row"
           *ngFor="
-            let transport of transportList
+            let transporturi of transportList
               | filtruTransporturi: curse.taraIncarcare:'taraIncarcare'
               | filtruTransporturi: curse.taraDescarcare:'taraDescarcare'
               | sortTransporturi: [sortParam, sortDirection]
           "
         >
-          <app-transport [transportItem]="transport"></app-transport>
+          <app-transport [transportItem]="transporturi"></app-transport>
         </div>
       </div>
     </div>

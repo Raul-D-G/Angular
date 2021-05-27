@@ -8,37 +8,34 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   constructor(
     private authService: AuthService,
     public progressBar: ProgressBarService,
     private alertService: AlertService,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(loginForm: NgForm) {
-
     this.progressBar.startLoading();
 
     const loginObserver = {
-      next: x => {
+      next: (x) => {
         this.progressBar.setSuccess();
         this.alertService.success('Autentificare Reusita!');
         this.progressBar.completeLoading();
         this.router.navigateByUrl('/companie');
       },
-      error: err => {
+      error: (err) => {
         this.progressBar.setError();
         this.alertService.danger(err.error);
         this.progressBar.completeLoading();
-      }
-    }
+      },
+    };
     this.authService.login(loginForm.value).subscribe(loginObserver);
   }
-
 }

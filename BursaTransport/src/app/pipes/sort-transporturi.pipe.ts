@@ -1,10 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'sortTransporturi'
+  name: 'sortTransporturi',
 })
 export class SortTransporturiPipe implements PipeTransform {
-
   transform(value: Array<number>, args: any[]): any {
     const sortField = args[0].toLowerCase();
     const sortDirection = args[1];

@@ -7,15 +7,15 @@ import { AlertService } from 'ngx-alerts';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-
   constructor(
     private progress: NgProgress,
     public progressBar: ProgressBarService,
     public authService: AuthService,
-    private alertService: AlertService) { }
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.progressBar.progressRef = this.progress.ref('progressBar');
@@ -24,8 +24,7 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.logout();
     if (localStorage.getItem('token') == null) {
-      this.alertService.success("Deconectare!");
+      this.alertService.success('Deconectare!');
     }
   }
-
 }

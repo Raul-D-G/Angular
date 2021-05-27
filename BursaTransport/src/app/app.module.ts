@@ -11,20 +11,16 @@ import { CompanieModule } from './companie/companie.module';
 import { CompanieComponent } from './pages/companie/companie.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    CompanieComponent
-  ],
+  declarations: [AppComponent, HomeComponent, CompanieComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     AuthModule,
     HttpClientModule,
-    CompanieModule
+    CompanieModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
