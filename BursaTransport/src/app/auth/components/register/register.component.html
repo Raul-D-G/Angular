@@ -46,6 +46,26 @@
               />
             </div>
           </div>
+          <div class="input-group my-3">
+            <label class="input-group-text" for="inputGroupSelect01"
+              >Obtiuni cont</label
+            >
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="rol"
+              ngModel
+              required
+              #rol="ngModel"
+              id="inputGroupSelect01"
+            >
+              <option value="" disabled selected>Alege..</option>
+
+              <option value="transportator">Transportator</option>
+              <option value="caraus">Caraus</option>
+              <option value="expeditii">Casa de expeditii</option>
+            </select>
+          </div>
           <div class="mb-3">
             <label for="mail" class="form-label">Adresa de email</label>
             <input
