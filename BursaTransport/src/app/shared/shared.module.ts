@@ -1,14 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/header/header.component';
+
 import { NgProgressModule } from '@ngx-progressbar/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertModule } from 'ngx-alerts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 import { FooterComponent } from './components/footer/footer.component';
 import { ButtonComponent } from './components/button/button.component';
+import { HeaderComponent } from './components/header/header.component';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, ButtonComponent],
@@ -23,5 +28,12 @@ import { ButtonComponent } from './components/button/button.component';
     AlertModule.forRoot({ maxMessages: 5, timeout: 3000, positionX: 'right' }),
   ],
   exports: [HeaderComponent, FooterComponent, ButtonComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+  ],
 })
 export class SharedModule {}
