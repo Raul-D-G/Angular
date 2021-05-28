@@ -8,7 +8,6 @@ import { Injectable } from '@angular/core';
 })
 export class TransportService {
   transportUrl = 'http://localhost:3000/api/transporturi';
-  auth_token = localStorage.getItem('token');
 
   constructor(private http: HttpClient) {}
 
