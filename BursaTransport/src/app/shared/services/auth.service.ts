@@ -43,4 +43,8 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
+
+  getRol() {
+    return this.decodedToken.user.rol;
+  }
 }
