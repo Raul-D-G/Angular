@@ -1,3 +1,4 @@
+import { ExpeditiiModule } from './expeditii/expeditii.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +21,7 @@ import { CompanieComponent } from './pages/companie/companie.component';
     AuthModule,
     HttpClientModule,
     CompanieModule,
+    ExpeditiiModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
