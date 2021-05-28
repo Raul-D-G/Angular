@@ -13,10 +13,11 @@
           accesul va fi respins si suma platita va fi returnata.
         </p>
         <a
+          *ngIf="!authService.isLoggedIn()"
           [routerLink]="['register']"
           routerLinkActive="router-link-active"
           class="btn btn-info"
-          >Inscriere Companie<i class="fas fa-user-plus"></i
+          >Inscriere Companie <i class="fas fa-user-plus"></i
         ></a>
       </div>
 
