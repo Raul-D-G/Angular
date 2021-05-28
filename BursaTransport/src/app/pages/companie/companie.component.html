@@ -3,6 +3,7 @@
     <div class="row">
       <div class="col-sm-2 sidenav">
         <a
+          *ngIf="authService.getRol() !== 'expeditii'"
           [routerLink]="['bursaTransporturi']"
           routerLinkActive="router-link-active"
           class="btn btn-lg btn-outline-info"
@@ -20,6 +21,7 @@
     <div class="row">
       <div class="col-sm-2 sidenav">
         <a
+          *ngIf="authService.getRol() !== 'transportator'"
           [routerLink]="['adaugaTransport']"
           routerLinkActive="router-link-active"
           class="btn btn-lg btn-outline-info"
