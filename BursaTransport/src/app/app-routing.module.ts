@@ -1,7 +1,9 @@
-import { CompanieComponent } from './pages/companie/companie.component';
-import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+import { CompanieComponent } from './pages/companie/companie.component';
+import { HomeComponent } from './pages/home/home.component';
+
 import { AuthGuard } from './guards/auth-guard.guard';
 
 const routes: Routes = [
