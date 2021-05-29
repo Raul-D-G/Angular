@@ -1,11 +1,11 @@
+import { InteractionService } from './../../../shared/services/interaction.service';
 import { ProgressBarService } from './../../../shared/services/progress-bar.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from 'ngx-alerts';
 import { Router } from '@angular/router';
-
-declare var google;
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-adauga-transport',
@@ -14,27 +14,119 @@ declare var google;
 })
 export class AdaugaTransportComponent implements OnInit {
   constructor(
+    private mapsAPILoader: MapsAPILoader,
     private authService: AuthService,
     public progressBar: ProgressBarService,
     private alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private interactionService: InteractionService
   ) {}
 
-  incarcare: string;
-  descarcare: string;
+  incarcare: [string, string];
+  esteCompletataIncarcare: boolean = true;
+  descarcare: [string, string];
+  km: string;
 
   ngOnInit(): void {
-    // var from_places = new google.maps.places.Autocomplete(
-    //   document.getElementById('incarcare')
-    // );
-    // var to_places = new google.maps.places.Autocomplete(
-    //   document.getElementById('descarcare')
-    // );
+    this.mapsAPILoader.load().then(() => {
+      const startInput = document.getElementById(
+        'incarcare'
+      ) as HTMLInputElement;
+      const endInput = document.getElementById(
+        'descarcare'
+      ) as HTMLInputElement;
+
+      const startSearchBox = new google.maps.places.SearchBox(startInput);
+      const stopSearchBox = new google.maps.places.SearchBox(endInput);
+      let sOras;
+      let sTara;
+      let startValue;
+      let endValue;
+
+      startSearchBox.addListener('places_changed', () => {
+        const places = startSearchBox.getPlaces();
+
+        if (places.length == 0) {
+          return;
+        }
+        places.forEach((place) => {
+          if (!place.geometry || !place.geometry.location) {
+            console.log('Returned place contains no geometry');
+            return;
+          }
+          // console.log(place);
+          startValue = place.formatted_address;
+          this.esteCompletataIncarcare = !this.esteCompletataIncarcare;
+          for (var i = 0; i < place.address_components.length; i++) {
+            var addressType = place.address_components[i].types[0];
+            if (addressType == 'locality') {
+              sOras = place.address_components[i].long_name;
+            }
+            if (addressType == 'country') {
+              sTara = place.address_components[i].long_name;
+            }
+          }
+          this.incarcare = [sOras, sTara];
+        });
+      });
+
+      stopSearchBox.addListener('places_changed', () => {
+        const places = stopSearchBox.getPlaces();
+        let oras;
+        let tara;
+        if (places.length == 0) {
+          return;
+        }
+
+        places.forEach((place) => {
+          if (!place.geometry || !place.geometry.location) {
+            console.log('Returned place contains no geometry');
+            return;
+          }
+          // console.log(place);
+          endValue = place.formatted_address;
+          for (var i = 0; i < place.address_components.length; i++) {
+            var addressType = place.address_components[i].types[0];
+            if (addressType == 'locality') {
+              oras = place.address_components[i].long_name;
+            }
+
+            if (addressType == 'country') {
+              tara = place.address_components[i].long_name;
+            }
+          }
+
+          this.descarcare = [oras, tara];
+
+          if (this.incarcare) {
+            const ruta = {
+              origin: startValue,
+              destination: endValue,
+            };
+
+            this.interactionService.sendMessage(ruta);
+          }
+        });
+      });
+    });
+
+    this.interactionService.message$.subscribe((kmTimp) => {
+      var self = this;
+      if (kmTimp.km) {
+        console.log(kmTimp.km);
+
+        var x: number = kmTimp.km.substr(0, kmTimp.km.indexOf(' '));
+        console.log(x);
+
+        self.km = kmTimp.km;
+      }
+    });
   }
 
   onSubmit(transportForm: NgForm) {
-    this.progressBar.startLoading();
+    console.log(transportForm.value);
 
+    // this.progressBar.startLoading();
     // const registerObserver = {
     //   next: (x) => {
     //     this.progressBar.setSuccess();

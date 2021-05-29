@@ -21,10 +21,12 @@
           <div class="col-md-5">
             <label for="adresac" class="form-label">Descarcare</label>
             <input
+              [disabled]="esteCompletataIncarcare"
               type="text"
               name="descarcare"
               [(ngModel)]="descarcare"
               class="form-control"
+              required
               id="descarcare"
               placeholder="Intoduceti adresa pentru descarcare"
             />
@@ -35,11 +37,12 @@
             <div class="input-group my-3">
               <span class="input-group-text" id="basic-addon1">Km</span>
               <input
-                type="number"
+                class="form-control"
+                type="string"
+                readonly
                 name="km"
-                ngModel
+                [(ngModel)]="km"
                 required
-                #km="ngModel"
                 class="form-control"
                 id="km"
                 placeholder="Km..."
