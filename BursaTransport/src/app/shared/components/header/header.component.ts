@@ -1,6 +1,6 @@
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ProgressBarService } from './../../services/progress-bar.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgProgress } from '@ngx-progressbar/core';
 import { AlertService } from 'ngx-alerts';
 
@@ -10,6 +10,7 @@ import { AlertService } from 'ngx-alerts';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  @Input() deviceXs: boolean;
   constructor(
     private progress: NgProgress,
     public progressBar: ProgressBarService,
@@ -26,5 +27,12 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('token') == null) {
       this.alertService.success('Deconectare!');
     }
+  }
+
+  rutaNavBar(): string {
+    if (this.authService.isLoggedIn()) {
+      return '/companie';
+    }
+    return '';
   }
 }

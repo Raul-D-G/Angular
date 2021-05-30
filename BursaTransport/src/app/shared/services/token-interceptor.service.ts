@@ -20,20 +20,23 @@ export class TokenInterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let authService = this.injector.get(AuthService);
+    if (authService.isLoggedIn()) {
+      let tokenizedReq = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${authService.getToken()}`,
+        },
+      });
 
-    let tokenizedReq = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${authService.getToken()}`,
-      },
-    });
+      const reqCloned = this.handleBodyIn(
+        tokenizedReq,
+        authService.getCompanieId(),
+        'idCompanie'
+      );
+      const copiedReq = reqCloned;
+      return next.handle(copiedReq);
+    }
 
-    const reqCloned = this.handleBodyIn(
-      tokenizedReq,
-      authService.getCompanieId(),
-      'idCompanie'
-    );
-    const copiedReq = reqCloned;
-    return next.handle(copiedReq);
+    return next.handle(req);
   }
 
   handleBodyIn(req: HttpRequest<any>, tokenToAdd, tokenName) {

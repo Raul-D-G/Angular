@@ -11,6 +11,7 @@ ul {
 
 .cart_items {
   margin-top: 8px;
+  border-radius: 10px;
 }
 
 .cart_list {

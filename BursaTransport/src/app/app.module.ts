@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CompanieComponent } from './pages/companie/companie.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, CompanieComponent],
@@ -22,6 +23,7 @@ import { CompanieComponent } from './pages/companie/companie.component';
     HttpClientModule,
     CompanieModule,
     ExpeditiiModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
