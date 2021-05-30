@@ -2,7 +2,7 @@ footer {
   background-color: #23415c;
   padding: 1% 5% 1% 5%;
   color: #fff;
-  height: 100px;
+  min-height: 100px;
 }
 
 .fab {
