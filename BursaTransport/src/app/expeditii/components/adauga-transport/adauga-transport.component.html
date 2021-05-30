@@ -35,23 +35,6 @@
         <div class="row justify-content-between">
           <div class="col-md-5">
             <div class="input-group my-3">
-              <span class="input-group-text" id="basic-addon1">Km</span>
-              <input
-                class="form-control"
-                type="string"
-                readonly
-                name="km"
-                [(ngModel)]="km"
-                required
-                class="form-control"
-                id="km"
-                placeholder="Km..."
-              />
-            </div>
-          </div>
-
-          <div class="col-md-5">
-            <div class="input-group my-3">
               <span class="input-group-text" id="pret"
                 >Pret <i class="fas fa-euro-sign"></i
               ></span>
@@ -64,6 +47,22 @@
                 class="form-control"
                 id="pret"
                 placeholder="Pret..."
+              />
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="input-group my-3">
+              <span class="input-group-text" id="basic-addon1">Km</span>
+              <input
+                class="form-control"
+                type="number"
+                readonly
+                name="km"
+                [(ngModel)]="km"
+                required
+                class="form-control"
+                id="km"
+                placeholder="Km..."
               />
             </div>
           </div>

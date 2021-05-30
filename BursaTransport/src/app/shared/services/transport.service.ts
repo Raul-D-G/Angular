@@ -18,4 +18,8 @@ export class TransportService {
 
     return this.http.get<Transport[]>(this.transportUrl, { headers: headers });
   }
+
+  registerTransport(model: any) {
+    return this.http.post<any>(this.transportUrl, model);
+  }
 }

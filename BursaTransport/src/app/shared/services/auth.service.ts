@@ -47,4 +47,10 @@ export class AuthService {
   getRol() {
     return this.decodedToken.user.rol;
   }
+
+  getCompanieId() {
+    console.log(this.decodedToken.user.id);
+
+    return this.decodedToken.user.id;
+  }
 }

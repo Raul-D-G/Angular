@@ -1,6 +1,6 @@
+import { TransportService } from './../../../shared/services/transport.service';
 import { InteractionService } from './../../../shared/services/interaction.service';
 import { ProgressBarService } from './../../../shared/services/progress-bar.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from 'ngx-alerts';
@@ -15,17 +15,17 @@ import { MapsAPILoader } from '@agm/core';
 export class AdaugaTransportComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private authService: AuthService,
     public progressBar: ProgressBarService,
     private alertService: AlertService,
     private router: Router,
-    private interactionService: InteractionService
+    private interactionService: InteractionService,
+    private transportService: TransportService
   ) {}
 
   incarcare: [string, string];
   esteCompletataIncarcare: boolean = true;
   descarcare: [string, string];
-  km: string;
+  km: number;
 
   ngOnInit(): void {
     this.mapsAPILoader.load().then(() => {
@@ -54,8 +54,9 @@ export class AdaugaTransportComponent implements OnInit {
             console.log('Returned place contains no geometry');
             return;
           }
-          // console.log(place);
+          // console.log(place.geometry.location.lat());
           startValue = place.formatted_address;
+
           this.esteCompletataIncarcare = !this.esteCompletataIncarcare;
           for (var i = 0; i < place.address_components.length; i++) {
             var addressType = place.address_components[i].types[0];
@@ -113,12 +114,7 @@ export class AdaugaTransportComponent implements OnInit {
     this.interactionService.message$.subscribe((kmTimp) => {
       var self = this;
       if (kmTimp.km) {
-        console.log(kmTimp.km);
-
-        var x: number = kmTimp.km.substr(0, kmTimp.km.indexOf(' '));
-        console.log(x);
-
-        self.km = kmTimp.km;
+        self.km = parseFloat(kmTimp.km.toFixed(2));
       }
     });
   }
@@ -126,20 +122,22 @@ export class AdaugaTransportComponent implements OnInit {
   onSubmit(transportForm: NgForm) {
     console.log(transportForm.value);
 
-    // this.progressBar.startLoading();
-    // const registerObserver = {
-    //   next: (x) => {
-    //     this.progressBar.setSuccess();
-    //     this.alertService.success('Inregistrare Reusita!');
-    //     this.progressBar.completeLoading();
-    //     this.router.navigateByUrl('/login');
-    //   },
-    //   error: (err) => {
-    //     this.progressBar.setError();
-    //     this.alertService.danger('Inregistrare esuata!');
-    //     this.progressBar.completeLoading();
-    //   },
-    // };
-    // this.authService.register(registerform.value).subscribe(registerObserver);
+    this.progressBar.startLoading();
+    const registerObserver = {
+      next: (x) => {
+        this.progressBar.setSuccess();
+        this.alertService.success('Inregistrare Reusita!');
+        this.progressBar.completeLoading();
+        this.router.navigateByUrl('/companie');
+      },
+      error: (err) => {
+        this.progressBar.setError();
+        this.alertService.danger('Inregistrare esuata!');
+        this.progressBar.completeLoading();
+      },
+    };
+    this.transportService
+      .registerTransport(transportForm.value)
+      .subscribe(registerObserver);
   }
 }

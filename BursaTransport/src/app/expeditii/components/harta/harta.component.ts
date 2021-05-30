@@ -39,23 +39,25 @@ export class HartaComponent implements OnInit {
         directionsDisplay.setMap(map);
         directionsDisplay.setPanel(document.getElementById('panel'));
 
-        var request = {
-          origin: ruta.origin,
-          destination: ruta.destination,
-          travelMode: google.maps.TravelMode.DRIVING,
-        };
+        if (ruta.origin) {
+          var request = {
+            origin: ruta.origin,
+            destination: ruta.destination,
+            travelMode: google.maps.TravelMode.DRIVING,
+          };
 
-        directionsService.route(request, function (response, status) {
-          if (status == google.maps.DirectionsStatus.OK) {
-            const raspuns = {
-              km: response.routes[0].legs[0].distance.text,
-              timp: response.routes[0].legs[0].duration.text,
-            };
-            self.interactionService.sendMessage(raspuns);
+          directionsService.route(request, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+              const raspuns = {
+                km: response.routes[0].legs[0].distance.value * 0.001,
+                timp: response.routes[0].legs[0].duration.text,
+              };
+              self.interactionService.sendMessage(raspuns);
 
-            directionsDisplay.setDirections(response);
-          }
-        });
+              directionsDisplay.setDirections(response);
+            }
+          });
+        }
       });
     });
   }

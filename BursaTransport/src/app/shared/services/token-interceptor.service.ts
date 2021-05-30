@@ -26,6 +26,36 @@ export class TokenInterceptorService implements HttpInterceptor {
         Authorization: `Bearer ${authService.getToken()}`,
       },
     });
-    return next.handle(tokenizedReq);
+
+    const reqCloned = this.handleBodyIn(
+      tokenizedReq,
+      authService.getCompanieId(),
+      'idCompanie'
+    );
+    const copiedReq = reqCloned;
+    return next.handle(copiedReq);
+  }
+
+  handleBodyIn(req: HttpRequest<any>, tokenToAdd, tokenName) {
+    if (req.method.toLowerCase() === 'post') {
+      if (req.body instanceof FormData) {
+        req = req.clone({
+          body: req.body.append(tokenName, tokenToAdd),
+        });
+      } else {
+        const foo = {};
+        foo[tokenName] = tokenToAdd;
+        req = req.clone({
+          body: { ...req.body, ...foo },
+        });
+      }
+    }
+    if (req.method.toLowerCase() === 'get') {
+      req = req.clone({
+        params: req.params.set(tokenName, tokenName),
+      });
+    }
+
+    return req;
   }
 }
