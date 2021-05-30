@@ -1,13 +1,8 @@
-.cart_item_image {
-  width: 130px;
-  height: 133px;
-  align-self: center;
-}
-
 .cart_item_image img {
   width: 150px;
   height: 110px;
-  margin-top: 12px;
+  padding: 8px;
+  align-self: center;
 }
 
 p {

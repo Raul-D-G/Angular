@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Transport } from '../../../../../models/transport';
 
 @Component({
@@ -8,8 +8,16 @@ import { Transport } from '../../../../../models/transport';
 })
 export class TransportComponent implements OnInit {
   @Input() transportItem: Transport;
+  @Output() onDetalii: EventEmitter<any> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  detalii() {
+    alert('detaliis');
+  }
+  accepta() {
+    alert('accepta');
+  }
 }

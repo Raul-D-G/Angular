@@ -9,12 +9,18 @@ export class ButtonComponent implements OnInit {
   @Input() text: string;
   @Input() color: string;
   @Output() btnClick = new EventEmitter();
-
+  firstColor: string;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.firstColor = this.color;
+  }
 
   onClick() {
     this.btnClick.emit();
+  }
+
+  changeStyle($event) {
+    this.color = $event.type == 'mouseover' ? '#4caf50' : this.firstColor;
   }
 }

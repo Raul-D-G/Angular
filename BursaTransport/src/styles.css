@@ -18,15 +18,19 @@
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
-  text-decoration: none;
   font-size: 15px;
   font-family: inherit;
+  transition-duration: 0.4s;
 }
 .btn:focus {
   outline: none;
 }
 .btn:active {
-  transform: scale(0.98);
+  transform: scale(0.8);
+}
+.btn:hover {
+  background-color: #4caf50; /* Green */
+  color: white;
 }
 
 .btn-block {
@@ -34,5 +38,11 @@
   width: 100%;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
