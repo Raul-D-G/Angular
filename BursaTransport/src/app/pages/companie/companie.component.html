@@ -29,5 +29,16 @@
         ></a>
       </div>
     </div>
+    <div class="row">
+      <div class="col-sm-2 sidenav">
+        <a
+          *ngIf="authService.getRol() !== 'transportator'"
+          [routerLink]="['veziTransporturi']"
+          routerLinkActive="router-link-active"
+          class="btn btn-lg btn-outline-info"
+          >Vezi transporturile tale<i class="fas fa-truck-loading"></i
+        ></a>
+      </div>
+    </div>
   </div>
 </div>

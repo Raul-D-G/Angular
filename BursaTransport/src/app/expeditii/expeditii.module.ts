@@ -1,18 +1,23 @@
+import { CompanieModule } from './../companie/companie.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AgmCoreModule } from '@agm/core';
 
 import { ExpeditiiRoutingModule } from './expeditii-routing.module';
+
 import { AdaugaTransporturiComponent } from './pages/adauga-transporturi/adauga-transporturi.component';
 import { AdaugaTransportComponent } from './components/adauga-transport/adauga-transport.component';
 import { HartaComponent } from './components/harta/harta.component';
-import { AgmCoreModule } from '@agm/core';
-
+import { TransporturileTaleComponent } from './components/transporturile-tale/transporturile-tale.component';
+import { VeziTransporturileTaleComponent } from './pages/vezi-transporturile-tale/vezi-transporturile-tale.component';
 @NgModule({
   declarations: [
     AdaugaTransporturiComponent,
     AdaugaTransportComponent,
     HartaComponent,
+    TransporturileTaleComponent,
+    VeziTransporturileTaleComponent,
   ],
   imports: [
     CommonModule,
@@ -22,6 +27,7 @@ import { AgmCoreModule } from '@agm/core';
       apiKey: 'AIzaSyAwh8fwzAoQVvP0uBgxuTRC6n2zMhTuctk',
       libraries: ['places'],
     }),
+    CompanieModule,
   ],
 })
 export class ExpeditiiModule {}

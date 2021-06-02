@@ -22,5 +22,6 @@ import { SortTransporturiPipe } from '../pipes/sort-transporturi.pipe';
     FiltruTransporturiComponent,
   ],
   imports: [CommonModule, CompanieRoutingModule, FormsModule, SharedModule],
+  exports: [TransportComponent],
 })
 export class CompanieModule {}
