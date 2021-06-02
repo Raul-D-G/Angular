@@ -5,7 +5,11 @@
       <div class="cart_title">
         <p>Transporturi disponibile</p>
         <div *ngFor="let transporturi of transportList">
-          <app-transport [transportItem]="transporturi"></app-transport>
+          <app-transport
+            [transportItem]="transporturi"
+            functie="Sterge Trasnport"
+            (onStergere)="stergeTransport($event)"
+          ></app-transport>
         </div>
       </div>
     </div>

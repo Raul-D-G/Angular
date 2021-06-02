@@ -30,6 +30,10 @@ export class TransportService {
     );
   }
 
+  deleteTransport(transportId: number) {
+    return this.http.delete(this.transportUrl + '/' + transportId);
+  }
+
   test(model: any) {
     return this.http.post<any>(this.transportUrl + '/camioane', model);
   }

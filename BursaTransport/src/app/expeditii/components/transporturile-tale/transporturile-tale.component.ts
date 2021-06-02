@@ -23,4 +23,15 @@ export class TransporturileTaleComponent implements OnInit {
         this.transportList = transporturi;
       });
   }
+
+  stergeTransport(transport: Transport) {
+    this.transportList.forEach((tr, index) => {
+      if (tr.id === transport.id) {
+        this.transportList.splice(index, 1);
+      }
+    });
+    this.transportService.deleteTransport(transport.id).subscribe((data) => {
+      console.log(data);
+    });
+  }
 }

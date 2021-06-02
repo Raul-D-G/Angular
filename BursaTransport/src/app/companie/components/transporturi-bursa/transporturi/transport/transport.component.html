@@ -63,8 +63,8 @@
     ></app-button>
     <app-button
       color="#be9b7b"
-      text="Accepta transport"
-      (btnClick)="accepta()"
+      text="{{ functie }}"
+      (btnClick)="this.tipStergere() ? sterge() : accepta()"
     ></app-button>
   </div>
 </div>
