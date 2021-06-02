@@ -2,6 +2,7 @@ import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 import { CompanieRoutingModule } from './companie-routing.module';
 
 import { TransporturiBursaComponent } from './components/transporturi-bursa/transporturi-bursa.component';
@@ -21,7 +22,13 @@ import { SortTransporturiPipe } from '../pipes/sort-transporturi.pipe';
     SortTransporturiPipe,
     FiltruTransporturiComponent,
   ],
-  imports: [CommonModule, CompanieRoutingModule, FormsModule, SharedModule],
+  imports: [
+    CommonModule,
+    CompanieRoutingModule,
+    FormsModule,
+    SharedModule,
+    MatDialogModule,
+  ],
   exports: [TransportComponent],
 })
 export class CompanieModule {}

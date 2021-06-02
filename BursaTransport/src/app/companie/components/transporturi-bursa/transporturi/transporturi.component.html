@@ -21,6 +21,8 @@
           <app-transport
             [transportItem]="transporturi"
             functie="Accepta Trasnport"
+            (onAccepta)="acceptaTransport($event)"
+            (onDetalii)="detaliiTransport($event)"
           ></app-transport>
         </div>
       </div>

@@ -12,20 +12,19 @@ export class TransportComponent implements OnInit {
   @Input() functie: string;
   @Output() onDetalii: EventEmitter<any> = new EventEmitter();
   @Output() onStergere: EventEmitter<any> = new EventEmitter();
+  @Output() onAccepta: EventEmitter<any> = new EventEmitter();
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 
   detalii() {
-    alert('detaliis');
+    this.onDetalii.emit(this.transportItem);
   }
   accepta() {
-    alert('accepta');
+    this.onAccepta.emit(this.transportItem);
   }
   tipStergere() {
-    console.log(this.functie);
-
     return this.functie === 'Sterge Trasnport';
   }
   sterge() {
