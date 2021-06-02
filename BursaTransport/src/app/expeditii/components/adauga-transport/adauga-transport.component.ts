@@ -120,8 +120,6 @@ export class AdaugaTransportComponent implements OnInit {
   }
 
   onSubmit(transportForm: NgForm) {
-    console.log(transportForm.value);
-
     this.progressBar.startLoading();
     const registerObserver = {
       next: (x) => {

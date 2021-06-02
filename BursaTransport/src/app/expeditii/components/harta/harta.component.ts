@@ -1,3 +1,4 @@
+import { TransportService } from './../../../shared/services/transport.service';
 import { InteractionService } from './../../../shared/services/interaction.service';
 import { Component, OnInit } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
@@ -12,7 +13,8 @@ import { MapsAPILoader } from '@agm/core';
 export class HartaComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private interactionService: InteractionService
+    private interactionService: InteractionService,
+    private t: TransportService
   ) {}
   latitude: number;
   longitude: number;
@@ -23,6 +25,7 @@ export class HartaComponent implements OnInit {
   ngOnInit(): void {
     const myLatLng = { lat: 45.759689, lng: 24.230371 };
     this.mapsAPILoader.load().then(() => {
+      var self = this;
       var directionsService = new google.maps.DirectionsService();
       var directionsDisplay = new google.maps.DirectionsRenderer();
       const map = new google.maps.Map(
@@ -33,6 +36,36 @@ export class HartaComponent implements OnInit {
           mapTypeId: google.maps.MapTypeId.ROADMAP,
         }
       );
+
+      // let markers: google.maps.Marker[] = [];
+
+      // this.loopFunction(50000, function () {
+      //   const registerObserver = {
+      //     next: (x) => {
+      //       console.log(x.message.items[0]);
+
+      //       const neighborhoods: google.maps.LatLngLiteral[] = [
+      //         {
+      //           lat: x.message.items[0].latitude,
+      //           lng: x.message.items[0].longitude,
+      //         },
+      //       ];
+
+      //       const marker = new google.maps.Marker({
+      //         position: neighborhoods[0],
+      //         map: map,
+      //       });
+      //       markers.push(marker);
+      //     },
+      //     error: (err) => {
+      //       console.log(err);
+      //     },
+      //   };
+      //   const t = {
+      //     id: [8436978],
+      //   };
+      //   self.t.test(t).subscribe(registerObserver);
+      // });
 
       this.interactionService.message$.subscribe((ruta) => {
         var self = this;
@@ -62,32 +95,11 @@ export class HartaComponent implements OnInit {
     });
   }
 
-  // private setCurrentLocation() {
-  //   if ('geolocation' in navigator) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       this.latitude = position.coords.latitude;
-  //       this.longitude = position.coords.longitude;
-  //       this.zoom = 8;
-  //       this.getAddress(this.latitude, this.longitude);
-  //     });
-  //   }
-  // }
-
-  // getAddress(latitude, longitude) {
-  //   this.geoCoder.geocode(
-  //     { location: { lat: latitude, lng: longitude } },
-  //     (results, status) => {
-  //       if (status === 'OK') {
-  //         if (results[0]) {
-  //           this.zoom = 12;
-  //           this.address = results[0].formatted_address;
-  //         } else {
-  //           window.alert('No results found');
-  //         }
-  //       } else {
-  //         window.alert('Geocoder failed due to: ' + status);
-  //       }
-  //     }
-  //   );
+  // loopFunction(delay, callback) {
+  //   var loop = function () {
+  //     callback();
+  //     setTimeout(loop, delay);
+  //   };
+  //   loop();
   // }
 }

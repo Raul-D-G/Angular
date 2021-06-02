@@ -49,8 +49,6 @@ export class AuthService {
   }
 
   getCompanieId() {
-    console.log(this.decodedToken.user.id);
-
     return this.decodedToken.user.id;
   }
 }

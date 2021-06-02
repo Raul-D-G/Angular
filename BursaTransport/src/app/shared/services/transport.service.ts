@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Transport } from './../../models/transport';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -9,7 +10,7 @@ import { Injectable } from '@angular/core';
 export class TransportService {
   transportUrl = 'http://localhost:3000/api/transporturi';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getTransporturi(): Observable<Transport[]> {
     const headers = new HttpHeaders({
@@ -21,5 +22,15 @@ export class TransportService {
 
   registerTransport(model: any) {
     return this.http.post<any>(this.transportUrl, model);
+  }
+
+  getTransporturiByCompanieId(): Observable<Transport[]> {
+    return this.http.get<Transport[]>(
+      `${this.transportUrl}/${this.authService.getCompanieId()}`
+    );
+  }
+
+  test(model: any) {
+    return this.http.post<any>(this.transportUrl + '/camioane', model);
   }
 }

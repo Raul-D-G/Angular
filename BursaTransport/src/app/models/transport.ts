@@ -1,5 +1,6 @@
 export class Transport {
   id: number;
+  idExpeditor: number;
   tipMarfa: string;
   taraIncarcare: string;
   orasIncarcare: string;
@@ -10,6 +11,7 @@ export class Transport {
 
   constructor(
     id: number,
+    idExpeditor: number,
     tipMarfa: string,
     taraIncarcare: string,
     orasIncarcare: string,
@@ -19,6 +21,7 @@ export class Transport {
     km: number
   ) {
     this.id = id;
+    this.idExpeditor = idExpeditor;
     this.tipMarfa = tipMarfa;
     this.taraIncarcare = taraIncarcare;
     this.orasIncarcare = orasIncarcare;
