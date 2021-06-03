@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { AlertModule } from 'ngx-alerts';
@@ -15,6 +16,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { CompanieModalContentComponent } from './components/companie-modal-content/companie-modal-content.component';
+
+const config: SocketIoConfig = {
+  url: 'http://localhost:3000',
+  options: {},
+};
 
 @NgModule({
   declarations: [
@@ -30,6 +36,7 @@ import { CompanieModalContentComponent } from './components/companie-modal-conte
     BrowserModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
+    SocketIoModule.forRoot(config),
 
     AlertModule.forRoot({ maxMessages: 5, timeout: 3000, positionX: 'right' }),
   ],

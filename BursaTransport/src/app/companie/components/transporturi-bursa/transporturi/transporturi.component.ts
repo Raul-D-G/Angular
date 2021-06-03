@@ -1,3 +1,4 @@
+import { AuthService } from './../../../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { TransportService } from '../../../../shared/services/transport.service';
 import { Transport } from '../../../../models/transport';
@@ -14,7 +15,10 @@ export class TransporturiComponent implements OnInit {
   sortParam = '';
   sortDirection = 'asc';
 
-  constructor(private transportService: TransportService) {}
+  constructor(
+    private transportService: TransportService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.loadTransporturi();

@@ -16,8 +16,12 @@ export class TransportService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-
-    return this.http.get<Transport[]>(this.transportUrl, { headers: headers });
+    return this.http.get<Transport[]>(
+      `${this.transportUrl}/bursa/${this.authService.getCompanieId()}`,
+      {
+        headers: headers,
+      }
+    );
   }
 
   registerTransport(model: any) {
