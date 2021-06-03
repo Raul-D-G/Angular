@@ -44,7 +44,4 @@ export class TransporturiComponent implements OnInit {
   acceptaTransport(transport: Transport) {
     alert('ACC');
   }
-  detaliiTransport(transport: Transport) {
-    alert(transport);
-  }
 }

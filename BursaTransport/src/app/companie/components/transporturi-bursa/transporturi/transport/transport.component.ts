@@ -1,10 +1,13 @@
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Transport } from '../../../../../models/transport';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CompanieModalContentComponent } from '../../../../../shared/components/companie-modal-content/companie-modal-content.component';
 
 @Component({
   selector: 'app-transport',
   templateUrl: './transport.component.html',
+  // encapsulation: ViewEncapsulation.None,
   styleUrls: ['./transport.component.css'],
 })
 export class TransportComponent implements OnInit {
@@ -14,12 +17,18 @@ export class TransportComponent implements OnInit {
   @Output() onStergere: EventEmitter<any> = new EventEmitter();
   @Output() onAccepta: EventEmitter<any> = new EventEmitter();
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private modalService: NgbModal,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
-  detalii() {
-    this.onDetalii.emit(this.transportItem);
+  detalii(transport: Transport) {
+    var idExpeditor = transport.idExpeditor;
+    this.authService.getCompanieById(idExpeditor).subscribe((companie) => {
+      this.open(companie.data, transport);
+    });
   }
   accepta() {
     this.onAccepta.emit(this.transportItem);
@@ -29,5 +38,15 @@ export class TransportComponent implements OnInit {
   }
   sterge() {
     this.onStergere.emit(this.transportItem);
+  }
+  open(companie, transport) {
+    const modalRef = this.modalService.open(CompanieModalContentComponent, {
+      windowClass: 'dark-modal',
+    });
+    modalRef.componentInstance.companie = companie;
+    modalRef.componentInstance.transport = transport;
+  }
+  openWindowCustomClass(content) {
+    this.modalService.open(content, { windowClass: 'dark-modal' });
   }
 }

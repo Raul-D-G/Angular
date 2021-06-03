@@ -14,9 +14,15 @@ import { HeaderComponent } from './components/header/header.component';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { CompanieModalContentComponent } from './components/companie-modal-content/companie-modal-content.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, ButtonComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    ButtonComponent,
+    CompanieModalContentComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -27,7 +33,12 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 
     AlertModule.forRoot({ maxMessages: 5, timeout: 3000, positionX: 'right' }),
   ],
-  exports: [HeaderComponent, FooterComponent, ButtonComponent],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    ButtonComponent,
+    CompanieModalContentComponent,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -51,4 +51,8 @@ export class AuthService {
   getCompanieId() {
     return this.decodedToken.user.id;
   }
+
+  getCompanieById(id: number) {
+    return this.http.get<any>(`${this.authUrl}/${id}}`);
+  }
 }

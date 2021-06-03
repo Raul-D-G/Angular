@@ -34,4 +34,7 @@ export class TransporturileTaleComponent implements OnInit {
       console.log(data);
     });
   }
+  detaliiTransport(transport: any) {
+    alert('ASDASD');
+  }
 }
