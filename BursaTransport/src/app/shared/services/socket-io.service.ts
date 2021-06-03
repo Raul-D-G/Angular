@@ -9,6 +9,9 @@ export class SocketIoService {
   constructor(private socket: Socket) {}
 
   dorescTransport(transport: Transport, idUser) {
-    this.socket.emit('dorescTransport', { transport: transport, id: idUser });
+    this.socket.emit('dorescTransport', {
+      transport: transport,
+      idTransportator: idUser,
+    });
   }
 }

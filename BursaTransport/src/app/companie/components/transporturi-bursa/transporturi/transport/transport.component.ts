@@ -1,3 +1,4 @@
+import { TranzactiiService } from './../../../../../shared/services/tranzactii.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Transport } from '../../../../../models/transport';
@@ -20,7 +21,8 @@ export class TransportComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private authService: AuthService,
-    private socketService: SocketIoService
+    private socketService: SocketIoService,
+    private tranzactiiService: TranzactiiService
   ) {}
 
   ngOnInit(): void {}
@@ -31,7 +33,6 @@ export class TransportComponent implements OnInit {
       this.open(companie.data, this.transportItem);
     });
   }
-
   tipStergere() {
     return this.functie === 'Sterge Trasnport';
   }
@@ -45,12 +46,18 @@ export class TransportComponent implements OnInit {
     modalRef.componentInstance.companie = companie;
     modalRef.componentInstance.transport = transport;
   }
-  openWindowCustomClass(content) {
-    this.modalService.open(content, { windowClass: 'dark-modal' });
-  }
 
   accepta() {
     var idUser = this.authService.getCompanieId();
-    this.socketService.dorescTransport(this.transportItem, idUser);
+    var data = {
+      idTransport: this.transportItem.id,
+      idTransportator: idUser,
+      idExpeditor: this.transportItem.idExpeditor,
+    };
+    this.tranzactiiService.registerTranzactie(data).subscribe((res) => {
+      console.log(res);
+    });
+
+    // this.socketService.dorescTransport(this.transportItem, idUser);
   }
 }
