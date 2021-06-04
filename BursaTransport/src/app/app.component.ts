@@ -2,7 +2,6 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Subscription } from 'rxjs';
-import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { SocketIoService } from './shared/services/socket-io.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranzactieTransportModalContentComponent } from './shared/components/tranzactie-transport-modal-content/tranzactie-transport-modal-content.component';
@@ -17,10 +16,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private _transportSub: Subscription;
   title = 'BursaTransport';
   mediaSub: Subscription;
-  deviceXs: boolean;
   constructor(
     private authService: AuthService,
-    public mediaObserver: MediaObserver,
     public socketService: SocketIoService,
     private modalService: NgbModal
   ) {}
@@ -31,11 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.authService.isLoggedIn()) {
       this.socketService.setSocketId(this.authService.getCompanieId());
     }
-    this.mediaSub = this.mediaObserver.media$.subscribe(
-      (result: MediaChange) => {
-        this.deviceXs = result.mqAlias === 'xs' ? true : false;
-      }
-    );
+
     this._transportSub = this.socketService.ofertaTransport.subscribe(
       (data) => {
         var idTransportator = data.idTransportator;
@@ -62,7 +55,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.mediaSub.unsubscribe();
     this._transportSub.unsubscribe();
   }
 }
