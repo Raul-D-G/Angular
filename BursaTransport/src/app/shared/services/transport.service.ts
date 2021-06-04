@@ -28,6 +28,10 @@ export class TransportService {
     return this.http.post<any>(this.transportUrl, model);
   }
 
+  trarnsportEfectuat(model: any) {
+    return this.http.post<any>(`${this.transportUrl}/efectuat`, model);
+  }
+
   getTransporturiByCompanieId(): Observable<Transport[]> {
     return this.http.get<Transport[]>(
       `${this.transportUrl}/${this.authService.getCompanieId()}`

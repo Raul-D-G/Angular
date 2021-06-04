@@ -1,7 +1,10 @@
+import { TransportService } from './../../services/transport.service';
 import { TranzactiiService } from './../../services/tranzactii.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SocketIoService } from '../../services/socket-io.service';
+import { ProgressBarService } from '../../services/progress-bar.service';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-tranzactie-transport-modal-content',
@@ -14,12 +17,41 @@ export class TranzactieTransportModalContentComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private tranzactieService: TranzactiiService,
-    private socketService: SocketIoService
+    private socketService: SocketIoService,
+    private transportService: TransportService,
+    public progressBar: ProgressBarService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {}
 
   acceptaTransportator() {
+    this.progressBar.startLoading();
+    const transportObserver = {
+      next: (x) => {
+        this.progressBar.setSuccess();
+        this.alertService.success('Inregistrare Reusita!');
+        this.progressBar.completeLoading();
+      },
+      error: (err) => {
+        this.progressBar.setError();
+        this.alertService.danger('Inregistrare esuata!');
+        this.progressBar.completeLoading();
+      },
+    };
+    var data = {
+      idTransport: this.transport.id,
+      idTransportator: this.transportator.id,
+      tipMarfa: this.transport.tipMarfa,
+      taraIncarcare: this.transport.taraIncarcare,
+      orasIncarcare: this.transport.orasIncarcare,
+      taraDescarcare: this.transport.taraDescarcare,
+      orasDescarcare: this.transport.orasDescarcare,
+      pret: this.transport.pret,
+      km: this.transport.km,
+    };
+    this.transportService.trarnsportEfectuat(data).subscribe(transportObserver);
+
     this.activeModal.close();
   }
   respingeTransportator() {

@@ -42,8 +42,8 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     );
 
-    // afiseaza notificare catre transportator cu decizia expeditorului
-    // intr-un modal
+    // afiseaza notificare catre transportator cu decizia de respingere
+    // a expeditorului intr-un modal
     this.respingereSub$ = this.socketService.respingere.subscribe((resping) => {
       var idExpeditor = resping.idExpeditor;
       var transport = resping.transport;
