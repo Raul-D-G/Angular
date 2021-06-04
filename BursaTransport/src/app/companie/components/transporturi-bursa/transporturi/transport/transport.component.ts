@@ -78,6 +78,6 @@ export class TransportComponent implements OnInit {
       }
     );
 
-    // this.socketService.dorescTransport(this.transportItem, idUser);
+    this.socketService.dorescTransport(this.transportItem, idUser);
   }
 }
