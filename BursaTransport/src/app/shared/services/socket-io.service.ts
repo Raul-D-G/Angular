@@ -7,6 +7,8 @@ import { Socket } from 'ngx-socket-io';
 export class SocketIoService {
   ofertaTransport = this.socket.fromEvent<any>('ofertaTransport');
   respingere = this.socket.fromEvent<any>('respingere');
+  acceptare = this.socket.fromEvent<any>('acceptare');
+
   constructor(private socket: Socket) {}
 
   setSocketId(idUser) {
@@ -23,5 +25,9 @@ export class SocketIoService {
 
   rerspingeTransport(resping: any) {
     this.socket.emit('respingereTransportator', resping);
+  }
+
+  acceptaTransport(accepta: any) {
+    this.socket.emit('acceptaTrasnport', accepta);
   }
 }

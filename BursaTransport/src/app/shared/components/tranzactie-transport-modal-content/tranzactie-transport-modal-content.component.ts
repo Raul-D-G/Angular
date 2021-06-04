@@ -50,7 +50,24 @@ export class TranzactieTransportModalContentComponent implements OnInit {
       pret: this.transport.pret,
       km: this.transport.km,
     };
+    // marcam transportul ca fiind efectuat
     this.transportService.trarnsportEfectuat(data).subscribe(transportObserver);
+
+    // stergem transportul din tabelul cu transporturi efectuate
+    // asta atrage si stergerea tranzactiei
+    this.transportService
+      .deleteTransport(this.transport.id)
+      .subscribe((data) => {
+        console.log(data);
+      });
+
+    const accepta = {
+      idTransportator: this.transportator.id,
+      idExpeditor: this.transport.idExpeditor,
+      transport: this.transport,
+    };
+    // emitem notificare catre transportator
+    this.socketService.acceptaTransport(accepta);
 
     this.activeModal.close();
   }

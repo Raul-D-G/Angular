@@ -16,6 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   helper = new JwtHelperService();
   private transportSub$: Subscription;
   private respingereSub$: Subscription;
+  private acceptSub$: Subscription;
   title = 'BursaTransport';
   constructor(
     private authService: AuthService,
@@ -57,6 +58,22 @@ export class AppComponent implements OnInit, OnDestroy {
         modalRef.componentInstance.expeditor = companie.data;
         modalRef.componentInstance.transport = transport;
         modalRef.componentInstance.actiune = 'refuzata';
+      });
+    });
+
+    this.acceptSub$ = this.socketService.acceptare.subscribe((accepta) => {
+      var idExpeditor = accepta.idExpeditor;
+      var transport = accepta.transport;
+      this.authService.getCompanieById(idExpeditor).subscribe((companie) => {
+        const modalRef = this.modalService.open(
+          NotificareTranzactieModalContentComponent,
+          {
+            windowClass: 'dark-modal',
+          }
+        );
+        modalRef.componentInstance.expeditor = companie.data;
+        modalRef.componentInstance.transport = transport;
+        modalRef.componentInstance.actiune = 'accepta';
       });
     });
   }
