@@ -25,24 +25,23 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const token = localStorage.getItem('token');
     this.authService.decodedToken = this.helper.decodeToken(token);
+    // daca user-ul este logat isi inregistreaza socketId-ul in backend
     if (this.authService.isLoggedIn()) {
       this.socketService.setSocketId(this.authService.getCompanieId());
     }
-
+    // declanseaza modalul pentru trazactie transport
     this._transportSub = this.socketService.ofertaTransport.subscribe(
       (data) => {
         var idTransportator = data.idTransportator;
         this.authService
           .getCompanieById(idTransportator)
           .subscribe((companie) => {
-            console.log(companie);
-
             this.openTranzactie(companie.data, data.transport);
           });
       }
     );
   }
-
+  // functie ce afiseaza modalul pentru trazactia unui transport
   openTranzactie(companie, transport) {
     const modalRef = this.modalService.open(
       TranzactieTransportModalContentComponent,

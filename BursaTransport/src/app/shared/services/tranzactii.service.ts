@@ -10,4 +10,8 @@ export class TranzactiiService {
   registerTranzactie(model: any) {
     return this.http.post<any>(this.tranzactiiUrl, model);
   }
+
+  deleteTranzactie(transportId: number) {
+    return this.http.delete(this.tranzactiiUrl + '/' + transportId);
+  }
 }
