@@ -1,6 +1,7 @@
 import { TranzactiiService } from './../../services/tranzactii.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SocketIoService } from '../../services/socket-io.service';
 
 @Component({
   selector: 'app-tranzactie-transport-modal-content',
@@ -9,10 +10,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class TranzactieTransportModalContentComponent implements OnInit {
   @Input() transport;
-  @Input() companie;
+  @Input() transportator;
   constructor(
     public activeModal: NgbActiveModal,
-    private tranzactieService: TranzactiiService
+    private tranzactieService: TranzactiiService,
+    private socketService: SocketIoService
   ) {}
 
   ngOnInit(): void {}
@@ -26,6 +28,13 @@ export class TranzactieTransportModalContentComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
       });
+
+    const resping = {
+      idTransportator: this.transportator.id,
+      idExpeditor: this.transport.idExpeditor,
+      transport: this.transport,
+    };
+    this.socketService.rerspingeTransport(resping);
 
     this.activeModal.close();
   }

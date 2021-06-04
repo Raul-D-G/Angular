@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { SocketIoService } from './shared/services/socket-io.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranzactieTransportModalContentComponent } from './shared/components/tranzactie-transport-modal-content/tranzactie-transport-modal-content.component';
+import { NotificareTranzactieModalContentComponent } from './shared/components/notificare-tranzactie-modal-content/notificare-tranzactie-modal-content.component';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,9 @@ import { TranzactieTransportModalContentComponent } from './shared/components/tr
 })
 export class AppComponent implements OnInit, OnDestroy {
   helper = new JwtHelperService();
-  private _transportSub: Subscription;
+  private transportSub$: Subscription;
+  private respingereSub$: Subscription;
   title = 'BursaTransport';
-  mediaSub: Subscription;
   constructor(
     private authService: AuthService,
     public socketService: SocketIoService,
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.socketService.setSocketId(this.authService.getCompanieId());
     }
     // declanseaza modalul pentru trazactie transport
-    this._transportSub = this.socketService.ofertaTransport.subscribe(
+    this.transportSub$ = this.socketService.ofertaTransport.subscribe(
       (data) => {
         var idTransportator = data.idTransportator;
         this.authService
@@ -40,6 +41,24 @@ export class AppComponent implements OnInit, OnDestroy {
           });
       }
     );
+
+    // afiseaza notificare catre transportator cu decizia expeditorului
+    // intr-un modal
+    this.respingereSub$ = this.socketService.respingere.subscribe((resping) => {
+      var idExpeditor = resping.idExpeditor;
+      var transport = resping.transport;
+      this.authService.getCompanieById(idExpeditor).subscribe((companie) => {
+        const modalRef = this.modalService.open(
+          NotificareTranzactieModalContentComponent,
+          {
+            windowClass: 'dark-modal',
+          }
+        );
+        modalRef.componentInstance.expeditor = companie.data;
+        modalRef.componentInstance.transport = transport;
+        modalRef.componentInstance.actiune = 'refuzata';
+      });
+    });
   }
   // functie ce afiseaza modalul pentru trazactia unui transport
   openTranzactie(companie, transport) {
@@ -49,11 +68,12 @@ export class AppComponent implements OnInit, OnDestroy {
         windowClass: 'dark-modal',
       }
     );
-    modalRef.componentInstance.companie = companie;
+    modalRef.componentInstance.transportator = companie;
     modalRef.componentInstance.transport = transport;
   }
 
   ngOnDestroy(): void {
-    this._transportSub.unsubscribe();
+    this.transportSub$.unsubscribe();
+    this.respingereSub$.unsubscribe();
   }
 }

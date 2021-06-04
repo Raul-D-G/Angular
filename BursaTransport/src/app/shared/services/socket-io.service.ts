@@ -1,13 +1,12 @@
 import { Transport } from './../../models/transport';
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
 export class SocketIoService {
   ofertaTransport = this.socket.fromEvent<any>('ofertaTransport');
-
+  respingere = this.socket.fromEvent<any>('respingere');
   constructor(private socket: Socket) {}
 
   setSocketId(idUser) {
@@ -21,11 +20,8 @@ export class SocketIoService {
       transport: transport,
     });
   }
-  // ofertaTransport() {
-  //   return this.socket.fromEvent('ofertaTransport').pipe(
-  //     map((data) => {
-  //       console.log(data);
-  //     })
-  //   );
-  // }
+
+  rerspingeTransport(resping: any) {
+    this.socket.emit('respingereTransportator', resping);
+  }
 }

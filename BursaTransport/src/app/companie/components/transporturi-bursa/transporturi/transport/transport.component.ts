@@ -77,7 +77,7 @@ export class TransportComponent implements OnInit {
         }
       }
     );
-
+    // trebuie intrdusa in res
     this.socketService.dorescTransport(this.transportItem, idUser);
   }
 }

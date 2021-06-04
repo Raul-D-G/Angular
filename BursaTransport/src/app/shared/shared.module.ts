@@ -18,6 +18,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { CompanieModalContentComponent } from './components/companie-modal-content/companie-modal-content.component';
 import { AlertaModalContentComponent } from './components/alerta-modal-content/alerta-modal-content.component';
 import { TranzactieTransportModalContentComponent } from './components/tranzactie-transport-modal-content/tranzactie-transport-modal-content.component';
+import { NotificareTranzactieModalContentComponent } from './components/notificare-tranzactie-modal-content/notificare-tranzactie-modal-content.component';
 
 const config: SocketIoConfig = {
   url: 'http://localhost:3000',
@@ -32,6 +33,7 @@ const config: SocketIoConfig = {
     CompanieModalContentComponent,
     AlertaModalContentComponent,
     TranzactieTransportModalContentComponent,
+    NotificareTranzactieModalContentComponent,
   ],
   imports: [
     CommonModule,
