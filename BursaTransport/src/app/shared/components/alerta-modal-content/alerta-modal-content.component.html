@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4 class="modal-title">Detalii Eroare</h4>
+</div>
+<div class="modal-body">
+  <div *ngIf="this.succes; then thenBlock; else elseBlock"></div>
+  <ng-template #thenBlock
+    ><p>Mesaj: {{ this.upperCaseWords(succes.message) }}</p>
+    <p>
+      {{
+        this.upperCaseWords(
+          "O sa fiti notificati cand expeditorul o sa prelucreze tranzactia!"
+        )
+      }}
+    </p></ng-template
+  >
+  <ng-template #elseBlock
+    ><p>Mesaj Eroare: {{ this.upperCaseWords(eroare.message) }}</p>
+    <p>Va rugam asteptati!</p></ng-template
+  >
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="activeModal.close('Close click')"
+  >
+    Close
+  </button>
+</div>

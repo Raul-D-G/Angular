@@ -16,6 +16,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { CompanieModalContentComponent } from './components/companie-modal-content/companie-modal-content.component';
+import { AlertaModalContentComponent } from './components/alerta-modal-content/alerta-modal-content.component';
 
 const config: SocketIoConfig = {
   url: 'http://localhost:3000',
@@ -28,6 +29,7 @@ const config: SocketIoConfig = {
     FooterComponent,
     ButtonComponent,
     CompanieModalContentComponent,
+    AlertaModalContentComponent,
   ],
   imports: [
     CommonModule,
