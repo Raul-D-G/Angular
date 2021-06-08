@@ -67,9 +67,12 @@ export class TransportComponent implements OnInit {
       idTransportator: idUser,
       idExpeditor: this.transportItem.idExpeditor,
     };
+    // se accepta transportul, se creeaza tranzactie si se anunta expeditorul
     this.tranzactiiService.registerTranzactie(data).subscribe(
       (res) => {
         this.openAlerta(res);
+
+        this.socketService.dorescTransport(this.transportItem, idUser);
       },
       (err) => {
         if (err.status === 500) {
@@ -77,7 +80,5 @@ export class TransportComponent implements OnInit {
         }
       }
     );
-    // trebuie intrdusa in res
-    this.socketService.dorescTransport(this.transportItem, idUser);
   }
 }

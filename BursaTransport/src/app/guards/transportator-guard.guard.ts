@@ -9,10 +9,11 @@ export class TransportatorGuardGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    if (
-      this.authService.getRol() === 'expeditii' ||
-      !this.authService.isLoggedIn()
-    ) {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigateByUrl('/login');
+      return false;
+    }
+    if (this.authService.getRol() === 'expeditii') {
       this.router.navigateByUrl('/companie');
       return false;
     }

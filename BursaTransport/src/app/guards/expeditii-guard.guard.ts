@@ -9,10 +9,11 @@ export class ExpeditiiGuardGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    if (
-      this.authService.getRol() === 'transportator' ||
-      !this.authService.isLoggedIn()
-    ) {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigateByUrl('/login');
+      return false;
+    }
+    if (this.authService.getRol() === 'transportator') {
       this.router.navigateByUrl('/companie');
       return false;
     }
