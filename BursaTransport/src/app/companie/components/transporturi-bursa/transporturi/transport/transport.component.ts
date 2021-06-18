@@ -17,7 +17,6 @@ export class TransportComponent implements OnInit {
   @Input() transportItem: Transport;
   @Input() functie: string;
   @Output() onStergere: EventEmitter<any> = new EventEmitter();
-  @Output() onAccepta: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private modalService: NgbModal,

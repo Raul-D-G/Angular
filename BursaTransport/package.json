@@ -32,7 +32,6 @@
     "ngx-bootstrap": "^6.2.0",
     "ngx-socket-io": "^4.0.0",
     "rxjs": "~6.6.0",
-    "socket.io-client": "^4.1.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
@@ -48,7 +47,7 @@
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.1.0",
-    "karma-chrome-launcher": "~3.1.0",
+    "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",

@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "BursaTransport"
+  "defaultProject": "BursaTransport",
+  "cli": {
+    "analytics": false
+  }
 }
