@@ -21,11 +21,11 @@
             "
           ></div>
           <ng-template #thenBlock>
-            <p class="numeP">Tip Marfa</p>
+            <p class="numeP">Tip Marfă</p>
             <p>{{ transportItem.tipMarfa }} <i class="fas fa-snowflake"></i></p>
           </ng-template>
           <ng-template #elseBlock>
-            <p class="numeP">Tip Marfa</p>
+            <p class="numeP">Tip Marfă</p>
             <p>
               {{ transportItem.tipMarfa }}
               <i class="fas fa-truck-moving"></i>
@@ -33,17 +33,17 @@
           </ng-template>
         </div>
         <div class="col-3 col-sm-3 mt-3">
-          <p class="numeP">Incarcare:</p>
+          <p class="numeP">Încărcare:</p>
           <p>{{ transportItem.taraIncarcare }},</p>
           <p>{{ transportItem.orasIncarcare }}</p>
         </div>
         <div class="col-3 col-sm-3 mt-3">
-          <p class="numeP">Descarcare:</p>
+          <p class="numeP">Descărcare:</p>
           <p>{{ transportItem.taraDescarcare }},</p>
           <p>{{ transportItem.orasDescarcare }}</p>
         </div>
         <div class="col-2 col-sm-2 mt-3">
-          <p class="numeP">Pret <i class="fas fa-euro-sign"></i></p>
+          <p class="numeP">Preț <i class="fas fa-euro-sign"></i></p>
           <p>
             {{ transportItem.pret | currency: "EUR" }}
           </p>

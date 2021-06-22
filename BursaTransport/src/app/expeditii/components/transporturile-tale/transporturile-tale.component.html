@@ -3,11 +3,13 @@
     <div class="col-md-4"></div>
     <div class="col-md-8">
       <div class="cart_title">
-        <p>Transporturi disponibile</p>
+        <div class="titlu">
+          <h1>Transporturi înregistrate</h1>
+        </div>
         <div *ngFor="let transporturi of transportList">
           <app-transport
             [transportItem]="transporturi"
-            functie="Sterge Trasnport"
+            functie="Șterge transport"
             (onStergere)="stergeTransport($event)"
             (onDetalii)="detaliiTransport($event)"
           ></app-transport>
