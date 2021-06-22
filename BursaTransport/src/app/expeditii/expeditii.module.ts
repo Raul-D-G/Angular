@@ -11,6 +11,9 @@ import { AdaugaTransportComponent } from './components/adauga-transport/adauga-t
 import { HartaComponent } from './components/harta/harta.component';
 import { TransporturileTaleComponent } from './components/transporturile-tale/transporturile-tale.component';
 import { VeziTransporturileTaleComponent } from './pages/vezi-transporturile-tale/vezi-transporturile-tale.component';
+import { TranzactiiComponent } from './pages/tranzactii/tranzactii.component';
+import { TranzactieComponent } from './components/tranzactie/tranzactie.component';
+import { ListaTranzactiiComponent } from './components/lista-tranzactii/lista-tranzactii.component';
 @NgModule({
   declarations: [
     AdaugaTransporturiComponent,
@@ -18,6 +21,9 @@ import { VeziTransporturileTaleComponent } from './pages/vezi-transporturile-tal
     HartaComponent,
     TransporturileTaleComponent,
     VeziTransporturileTaleComponent,
+    TranzactiiComponent,
+    TranzactieComponent,
+    ListaTranzactiiComponent,
   ],
   imports: [
     CommonModule,

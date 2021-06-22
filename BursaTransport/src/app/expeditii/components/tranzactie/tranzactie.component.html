@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-8">
+    <ng-container *ngIf="transportItem; else loader">
+      <app-transport
+        [transportItem]="transportItem"
+        functie="Acceptă transport"
+      ></app-transport>
+    </ng-container>
+
+    <ng-template #loader>Loading...</ng-template>
+  </div>
+</div>

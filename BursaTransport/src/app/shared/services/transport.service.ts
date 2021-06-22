@@ -24,6 +24,12 @@ export class TransportService {
     );
   }
 
+  getTransportById(idTransport: number): Observable<Transport> {
+    return this.http.get<Transport>(
+      `${this.transportUrl}/transport/${idTransport}`
+    );
+  }
+
   registerTransport(model: any) {
     return this.http.post<any>(this.transportUrl, model);
   }

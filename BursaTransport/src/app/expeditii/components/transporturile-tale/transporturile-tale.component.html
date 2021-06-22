@@ -1,17 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4"></div>
     <div class="col-md-8">
       <div class="cart_title">
         <div class="titlu">
           <h1>Transporturi înregistrate</h1>
         </div>
-        <div *ngFor="let transporturi of transportList">
+        <div *ngFor="let transport of transportList">
           <app-transport
-            [transportItem]="transporturi"
+            [transportItem]="transport"
             functie="Șterge transport"
             (onStergere)="stergeTransport($event)"
-            (onDetalii)="detaliiTransport($event)"
           ></app-transport>
         </div>
       </div>
