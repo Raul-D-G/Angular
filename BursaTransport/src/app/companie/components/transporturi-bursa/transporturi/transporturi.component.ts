@@ -44,8 +44,4 @@ export class TransporturiComponent implements OnInit {
     this.sortDirection = sort.sortDirection;
     this.sortParam = sort.sortParam;
   }
-
-  acceptaTransport(transport: Transport) {
-    alert('ACC');
-  }
 }

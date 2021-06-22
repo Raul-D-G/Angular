@@ -34,7 +34,7 @@ export class TransportComponent implements OnInit {
     });
   }
   tipStergere() {
-    return this.functie === 'Sterge Trasnport';
+    return this.functie === 'Șterge transport';
   }
   sterge() {
     this.onStergere.emit(this.transportItem);

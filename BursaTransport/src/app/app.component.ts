@@ -6,7 +6,7 @@ import { SocketIoService } from './shared/services/socket-io.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranzactieTransportModalContentComponent } from './shared/components/tranzactie-transport-modal-content/tranzactie-transport-modal-content.component';
 import { NotificareTranzactieModalContentComponent } from './shared/components/notificare-tranzactie-modal-content/notificare-tranzactie-modal-content.component';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,7 +21,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     public socketService: SocketIoService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private _router: Router
   ) {}
 
   ngOnInit() {
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.authService.isLoggedIn()) {
       this.socketService.setSocketId(this.authService.getCompanieId());
     }
-    // declanseaza modalul pentru trazactie transport
+    // declanseaza modalul pentru trazactie transport (oferta catre expeditor)
     this.transportSub$ = this.socketService.ofertaTransport.subscribe(
       (data) => {
         var idTransportator = data.idTransportator;
@@ -61,10 +62,23 @@ export class AppComponent implements OnInit, OnDestroy {
       });
     });
 
+    // Atunci cand se emite semnalul pentru acceptarea unui transport de catre
+    // un expeditor
     this.acceptSub$ = this.socketService.acceptare.subscribe((accepta) => {
       var idExpeditor = accepta.idExpeditor;
       var transport = accepta.transport;
       this.authService.getCompanieById(idExpeditor).subscribe((companie) => {
+        // daca transportatorul e pe lista de transporturi disponibile
+        // se actualizeaza aceasta lista
+        let currentUrl = this._router.url;
+        if (currentUrl === '/companie/bursaTransporturi') {
+          this._router
+            .navigateByUrl('/', { skipLocationChange: true })
+            .then(() => {
+              this._router.navigate([currentUrl]);
+            });
+        }
+
         const modalRef = this.modalService.open(
           NotificareTranzactieModalContentComponent,
           {
