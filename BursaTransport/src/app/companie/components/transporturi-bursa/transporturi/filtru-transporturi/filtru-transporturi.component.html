@@ -1,34 +1,45 @@
 <div class="card">
   <div class="card-header">
-    <strong>Filters</strong>
+    <strong>Filtrare transporturi</strong>
   </div>
 
   <div class="card-body">
-    <form (ngSubmit)="onSubmit()">
+    <form #filtruForm="ngForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="from">Tara Incarcare</label>
+        <label for="from">Țară încărcare</label>
         <input
+          required
+          pattern="^[A-Za-z]*$"
           type="text"
           name="taraIncarcare"
           [(ngModel)]="taraIncarcare"
           id="taraIncarcare"
           class="form-control"
-          placeholder="Introduceți tara pentru incarcare(Ex. Ro)"
+          placeholder="Introduceți țara pentru încărcare(Ex. Ro)"
         />
       </div>
 
       <div class="form-group">
-        <label for="to">Tara Descarcare</label>
+        <label for="to">Țară Descărcare</label>
         <input
+          required
+          pattern="^[A-Za-z]*$"
           type="text"
           name="taraDescarcare"
           [(ngModel)]="taraDescarcare"
           id="taraDescarcare"
           class="form-control"
-          placeholder="Introduceți tara pentru descarcare(Ex. Gr)"
+          placeholder="Introduceți țara pentru descărcare(Ex. Gr)"
         />
       </div>
-      <input type="submit" value="Cauta curse" class="btn btn-block" />
+
+      <button
+        type="submit"
+        [disabled]="filtruForm.invalid"
+        class="btn btn-block"
+      >
+        Caută transporturi <i class="fas fa-paper-plane"></i>
+      </button>
     </form>
     <app-button
       color="{{ showAddTask ? 'red' : '#ffb42e' }}"
@@ -42,13 +53,13 @@
         [(ngModel)]="sortParam"
         [ngModelOptions]="{ standalone: true }"
       >
-        <option value="Pret">Pret</option>
-        <option value="Km">Distanta</option>
+        <option value="Pret">Preț</option>
+        <option value="Km">Distanță</option>
       </select>
 
       <app-button
         color="#ffb42e"
-        text="Sorteaza"
+        text="Sortează"
         (btnClick)="onSortDirection()"
       ></app-button>
     </div>

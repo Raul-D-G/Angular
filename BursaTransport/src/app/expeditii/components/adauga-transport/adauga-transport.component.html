@@ -4,22 +4,23 @@
       <form #transportForm="ngForm" (ngSubmit)="onSubmit(transportForm)">
         <div class="row">
           <div class="col-md-5">
-            <label for="numeCompanie" class="form-label">Incarcare</label>
+            <label for="numeCompanie" class="form-label">Încărcare</label>
             <input
               type="text"
               name="incarcare"
               [(ngModel)]="incarcare"
               required
+              pattern="^[A-Za-z ,ăîâșțĂÎÂȘȚ]*$"
               class="form-control"
               id="incarcare"
-              placeholder="Intoduceti adresa pentru incarcare"
+              placeholder="Introduceți adresa pentru încărcare"
             />
           </div>
           <div class="col align-self-center text-center">
             <i class="fas fa-truck-moving fa-4x"></i>
           </div>
           <div class="col-md-5">
-            <label for="adresac" class="form-label">Descarcare</label>
+            <label for="adresac" class="form-label">Descărcare</label>
             <input
               [disabled]="esteCompletataIncarcare"
               type="text"
@@ -27,8 +28,9 @@
               [(ngModel)]="descarcare"
               class="form-control"
               required
+              pattern="^[A-Za-z ,ăîâșțĂÎÂȘȚ]*$"
               id="descarcare"
-              placeholder="Intoduceti adresa pentru descarcare"
+              placeholder="Introduceți adresa pentru descărcare"
             />
           </div>
         </div>
@@ -36,17 +38,18 @@
           <div class="col-md-5">
             <div class="input-group my-3">
               <span class="input-group-text" id="pret"
-                >Pret <i class="fas fa-euro-sign"></i
+                >Preț <i class="fas fa-euro-sign"></i
               ></span>
               <input
                 type="number"
                 name="pret"
                 ngModel
                 required
+                min="0"
                 #pret="ngModel"
                 class="form-control"
                 id="pret"
-                placeholder="Pret..."
+                placeholder="Preț..."
               />
             </div>
           </div>
@@ -68,7 +71,7 @@
           </div>
         </div>
         <div class="input-group my-3">
-          <label class="input-group-text" for="tipMarfa">Tip marfa</label>
+          <label class="input-group-text" for="tipMarfa">Tip marfă</label>
           <select
             class="form-select"
             aria-label="Default select example"
@@ -80,9 +83,9 @@
           >
             <option value="" disabled selected>Alege..</option>
 
-            <option value="normal">Normala</option>
+            <option value="normal">Normală</option>
             <option value="frigo">Frigo</option>
-            <option value="special">Speciala</option>
+            <option value="special">Specială</option>
           </select>
         </div>
         <button
@@ -90,7 +93,7 @@
           [disabled]="transportForm.invalid"
           class="btn btn-primary"
         >
-          Confirma <i class="fas fa-paper-plane"></i>
+          Confirmă <i class="fas fa-paper-plane"></i>
         </button>
       </form>
     </div>
