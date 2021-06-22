@@ -8,3 +8,7 @@
   background-size: cover;
   padding-bottom: 2%;
 }
+
+.alert {
+  color: red;
+}
