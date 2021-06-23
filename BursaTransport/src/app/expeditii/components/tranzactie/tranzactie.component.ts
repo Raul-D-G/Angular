@@ -1,6 +1,7 @@
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { Transport } from './../../../models/transport';
 import { TransportService } from './../../../shared/services/transport.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Tranzactie } from 'src/app/models/tranzactie.model';
 
 @Component({
@@ -10,11 +11,17 @@ import { Tranzactie } from 'src/app/models/tranzactie.model';
 })
 export class TranzactieComponent implements OnInit {
   @Input() tranzactieItem: Tranzactie;
+  @Output() onStergere: EventEmitter<any> = new EventEmitter();
   transportItem: Transport;
-  constructor(private transportService: TransportService) {}
+  transportator: any;
+  constructor(
+    private transportService: TransportService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.getTransport(this.tranzactieItem.idTransport);
+    this.getTransportator(this.tranzactieItem.idTransportator);
   }
 
   getTransport(idTransport: number) {
@@ -23,5 +30,17 @@ export class TranzactieComponent implements OnInit {
       .subscribe((transport) => {
         this.transportItem = transport;
       });
+  }
+
+  getTransportator(idTransportator: number) {
+    return this.authService
+      .getCompanieById(idTransportator)
+      .subscribe((transportator) => {
+        this.transportator = transportator.data;
+      });
+  }
+
+  stergeTranzactieTransport(transport: Transport) {
+    this.onStergere.emit(transport);
   }
 }

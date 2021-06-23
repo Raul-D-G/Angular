@@ -55,16 +55,32 @@
       </div>
     </div>
   </div>
-  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <app-button
-      color="#be9b7b"
-      text="Detalii"
-      (btnClick)="detalii()"
-    ></app-button>
-    <app-button
-      color="#be9b7b"
-      text="{{ functie }}"
-      (btnClick)="this.tipStergere() ? sterge() : accepta()"
-    ></app-button>
-  </div>
+
+  <div *ngIf="tranzactie; then thenBlock1; else elseBlock1"></div>
+  <ng-template #thenBlock1
+    ><div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <app-button
+        color="#be9b7b"
+        text="Respinge tranzacția"
+        (btnClick)="respingeTranzactie()"
+      ></app-button>
+      <app-button
+        color="#be9b7b"
+        text="Acceptă tranzacția"
+        (btnClick)="acceptaTranzactie()"
+      ></app-button></div
+  ></ng-template>
+  <ng-template #elseBlock1>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <app-button
+        color="#be9b7b"
+        text="Detalii"
+        (btnClick)="detalii()"
+      ></app-button>
+      <app-button
+        color="#be9b7b"
+        text="{{ functie }}"
+        (btnClick)="this.tipStergere() ? sterge() : accepta()"
+      ></app-button></div
+  ></ng-template>
 </div>

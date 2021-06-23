@@ -17,7 +17,7 @@ export class TransportComponent implements OnInit {
   @Input() transportItem: Transport;
   @Input() functie: string;
   @Output() onStergere: EventEmitter<any> = new EventEmitter();
-
+  @Input() tranzactie: boolean = false;
   constructor(
     private modalService: NgbModal,
     private authService: AuthService,
@@ -80,4 +80,10 @@ export class TransportComponent implements OnInit {
       }
     );
   }
+
+  respingeTranzactie() {
+    this.onStergere.emit(this.transportItem);
+  }
+
+  acceptaTranzactie() {}
 }
