@@ -55,6 +55,7 @@ export class ListaTranzactiiComponent implements OnInit {
   }
   acceptaTranzactie(transport: Transport) {
     var tranzactie: Tranzactie;
+    // se inlatura tranzactia respectiva din lista
     this.tranzactiiList.forEach((tr, index) => {
       if (tr.idTransport === transport.id) {
         tranzactie = tr;
@@ -86,9 +87,10 @@ export class ListaTranzactiiComponent implements OnInit {
       pret: transport.pret,
       km: transport.km,
     };
-    // marcam transportul ca fiind efectuat
+    // marcam transportul ca fiind efectuat in tabel
     this.transportService.trarnsportEfectuat(data).subscribe(transportObserver);
 
+    // se sterge tranzactia din tabelul de trazactii
     this.tranzactiiSerice.deleteTranzactie(transport.id).subscribe((data) => {
       console.log(data['message']);
     });

@@ -19,6 +19,7 @@ import { CompanieModalContentComponent } from './components/companie-modal-conte
 import { AlertaModalContentComponent } from './components/alerta-modal-content/alerta-modal-content.component';
 import { TranzactieTransportModalContentComponent } from './components/tranzactie-transport-modal-content/tranzactie-transport-modal-content.component';
 import { NotificareTranzactieModalContentComponent } from './components/notificare-tranzactie-modal-content/notificare-tranzactie-modal-content.component';
+import { VizualizareTransportComponent } from './components/vizualizare-transport/vizualizare-transport.component';
 
 const config: SocketIoConfig = {
   url: 'http://localhost:3000',
@@ -34,6 +35,7 @@ const config: SocketIoConfig = {
     AlertaModalContentComponent,
     TranzactieTransportModalContentComponent,
     NotificareTranzactieModalContentComponent,
+    VizualizareTransportComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +53,7 @@ const config: SocketIoConfig = {
     FooterComponent,
     ButtonComponent,
     CompanieModalContentComponent,
+    VizualizareTransportComponent,
   ],
   providers: [
     {

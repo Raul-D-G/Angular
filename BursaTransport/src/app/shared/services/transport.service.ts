@@ -24,6 +24,12 @@ export class TransportService {
     );
   }
 
+  getTransporturiEfectuate(idTransportator: number): Observable<Transport[]> {
+    return this.http.get<Transport[]>(
+      `${this.transportUrl}/efectuat/${idTransportator}`
+    );
+  }
+
   getTransportById(idTransport: number): Observable<Transport> {
     return this.http.get<Transport>(
       `${this.transportUrl}/transport/${idTransport}`

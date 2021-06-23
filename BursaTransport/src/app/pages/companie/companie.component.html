@@ -10,6 +10,16 @@
           >Cauta Curse<i class="fas fa-truck-loading"></i
         ></a>
       </div>
+
+      <div class="col-sm-2 sidenav">
+        <a
+          *ngIf="authService.getRol() !== 'expeditii'"
+          [routerLink]="['transporturiEfectuate']"
+          routerLinkActive="router-link-active"
+          class="btn btn-lg btn-outline-info"
+          >Transporturi Efectuate<i class="fas fa-truck-loading"></i
+        ></a>
+      </div>
       <div class="col-sm-8 text-left">
         <h2>{{ authService.decodedToken?.user.nume }}</h2>
         <h4>
