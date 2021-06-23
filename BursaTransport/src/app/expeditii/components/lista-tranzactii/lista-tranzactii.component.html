@@ -5,6 +5,7 @@
       <app-tranzactie
         [tranzactieItem]="tranzactie"
         (onStergere)="stergeTranzactie($event)"
+        (onAcceptaTranzactie)="acceptaTranzactie($event)"
       ></app-tranzactie></div
   ></ng-template>
   <ng-template #elseBlock

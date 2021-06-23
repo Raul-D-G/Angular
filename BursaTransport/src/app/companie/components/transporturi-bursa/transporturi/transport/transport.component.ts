@@ -16,8 +16,10 @@ import { SocketIoService } from 'src/app/shared/services/socket-io.service';
 export class TransportComponent implements OnInit {
   @Input() transportItem: Transport;
   @Input() functie: string;
-  @Output() onStergere: EventEmitter<any> = new EventEmitter();
   @Input() tranzactie: boolean = false;
+
+  @Output() onStergere: EventEmitter<any> = new EventEmitter();
+  @Output() onAcceptaTranzactie: EventEmitter<any> = new EventEmitter();
   constructor(
     private modalService: NgbModal,
     private authService: AuthService,
@@ -85,5 +87,7 @@ export class TransportComponent implements OnInit {
     this.onStergere.emit(this.transportItem);
   }
 
-  acceptaTranzactie() {}
+  acceptaTranzactie() {
+    this.onAcceptaTranzactie.emit(this.transportItem);
+  }
 }

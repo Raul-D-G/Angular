@@ -11,7 +11,10 @@ import { Tranzactie } from 'src/app/models/tranzactie.model';
 })
 export class TranzactieComponent implements OnInit {
   @Input() tranzactieItem: Tranzactie;
+
   @Output() onStergere: EventEmitter<any> = new EventEmitter();
+  @Output() onAcceptaTranzactie: EventEmitter<any> = new EventEmitter();
+
   transportItem: Transport;
   transportator: any;
   constructor(
@@ -42,5 +45,9 @@ export class TranzactieComponent implements OnInit {
 
   stergeTranzactieTransport(transport: Transport) {
     this.onStergere.emit(transport);
+  }
+
+  acceptaTranzactieTransport(transport: Transport) {
+    this.onAcceptaTranzactie.emit(transport);
   }
 }
