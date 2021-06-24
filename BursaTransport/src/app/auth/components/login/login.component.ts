@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         this.progressBar.setError();
-        this.alertService.danger(err.error);
+        this.alertService.danger(err.error.error);
         this.progressBar.completeLoading();
       },
     };
