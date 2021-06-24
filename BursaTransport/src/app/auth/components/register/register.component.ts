@@ -25,14 +25,15 @@ export class RegisterComponent implements OnInit {
     const registerObserver = {
       next: (x) => {
         this.progressBar.setSuccess();
-        this.alertService.success('Inregistrare Reusita!');
+        this.alertService.success('Înregistrare reușită!');
         this.progressBar.completeLoading();
         this.router.navigateByUrl('/login');
       },
       error: (err) => {
         this.progressBar.setError();
-        this.alertService.danger('Inregistrare esuata!');
+        this.alertService.danger('Înregistrare eșuată!');
         this.progressBar.completeLoading();
+        registerform.reset();
       },
     };
     this.authService.register(registerform.value).subscribe(registerObserver);

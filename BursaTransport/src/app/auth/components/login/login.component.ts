@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     const loginObserver = {
       next: (x) => {
         this.progressBar.setSuccess();
-        this.alertService.success('Autentificare Reusita!');
+        this.alertService.success('Autentificare reușită!');
         this.progressBar.completeLoading();
         this.router.navigateByUrl('/companie');
       },
@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
         this.progressBar.setError();
         this.alertService.danger(err.error.error);
         this.progressBar.completeLoading();
+        loginForm.reset();
       },
     };
     this.authService.login(loginForm.value).subscribe(loginObserver);

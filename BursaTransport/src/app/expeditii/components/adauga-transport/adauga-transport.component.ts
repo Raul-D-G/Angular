@@ -124,14 +124,15 @@ export class AdaugaTransportComponent implements OnInit {
     const registerObserver = {
       next: (x) => {
         this.progressBar.setSuccess();
-        this.alertService.success('Inregistrare Reusita!');
+        this.alertService.success('Înregistrare reușită!');
         this.progressBar.completeLoading();
         this.router.navigateByUrl('/companie');
       },
       error: (err) => {
         this.progressBar.setError();
-        this.alertService.danger('Inregistrare esuata!');
+        this.alertService.danger('Înregistrare eșuată!');
         this.progressBar.completeLoading();
+        transportForm.reset();
       },
     };
     this.transportService

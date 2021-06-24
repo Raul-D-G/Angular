@@ -2,6 +2,24 @@
   <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
       <div class="container">
+        <div class="row pad">
+          <div class="col-sm-6">
+            <div class="row">
+              <h2>{{ authService.decodedToken?.user.nume }}</h2>
+              <div class="col-sm-3 descriere">
+                <p>Adresa: {{ authService.decodedToken?.user.adresa }}</p>
+                <p>C.U.I.: {{ authService.decodedToken?.user.cui }}</p>
+              </div>
+              <div class="col-sm-4 descriere">
+                <p>
+                  Tip abonamet:
+                  {{ authService.decodedToken?.user.rol.toUpperCase() }}
+                </p>
+                <P>Mail: {{ authService.decodedToken?.user.mail }}</P>
+              </div>
+            </div>
+          </div>
+        </div>
         <nav class="navbar navbar-expand-md navbar-light bg-light">
           <div class="container-fluid justify-content-between">
             <!-- Left elements -->
@@ -43,21 +61,56 @@
                   id="navbarDropdown3"
                   role="button"
                 >
-                  <span><i class="fas fa-truck-loading fa-lg"></i></span>
+                  <i class="fas fa-truck-loading fa-lg">Mărfuri</i>
                 </a>
                 <div
                   ngbDropdownMenu
                   aria-labelledby="navbarDropdown3"
                   class="dropdown-menu"
                 >
-                  <a ngbDropdownItem href="#" (click)="$event.preventDefault()"
-                    >Action</a
+                  <a
+                    *ngIf="authService.getRol() !== 'expeditii'"
+                    [routerLink]="['bursaTransporturi']"
+                    routerLinkActive="router-link-active"
+                    class="btn btn-lg btn-outline-info"
+                    >Caută marfă</a
                   >
-                  <a ngbDropdownItem href="#" (click)="$event.preventDefault()"
-                    >Another action</a
+                  <a
+                    *ngIf="authService.getRol() !== 'transportator'"
+                    [routerLink]="['adaugaTransport']"
+                    routerLinkActive="router-link-active"
+                    class="btn btn-lg btn-outline-info"
+                    >Adaugă marfă</a
                   >
-                  <a ngbDropdownItem href="#" (click)="$event.preventDefault()"
-                    >Something else here</a
+                </div>
+              </li>
+              <li
+                class="nav-item"
+                ngbDropdown
+                display="dynamic"
+                placement="bottom-right"
+                *ngIf="authService.getRol() !== 'transportator'"
+              >
+                <a
+                  class="nav-link"
+                  tabindex="0"
+                  ngbDropdownToggle
+                  id="navbarDropdown3"
+                  role="button"
+                >
+                  <i class="fas fa-exchange-alt fa-lg">Tranzacții</i>
+                </a>
+                <div
+                  ngbDropdownMenu
+                  aria-labelledby="navbarDropdown3"
+                  class="dropdown-menu"
+                >
+                  <a
+                    *ngIf="authService.getRol() !== 'transportator'"
+                    [routerLink]="['tranzactii']"
+                    routerLinkActive="router-link-active"
+                    class="btn btn-lg btn-outline-info"
+                    >Tranzacțiile tale</a
                   >
                 </div>
               </li>
@@ -80,26 +133,30 @@
                   id="navbarDropdown3"
                   role="button"
                 >
-                  <i class="fas fa-comments fa-lg"></i>
+                  <i class="fas fa-truck fa-lg">Transporturi</i>
 
-                  <span class="badge rounded-pill badge-notification bg-danger"
-                    >6</span
-                  >
+                  <!-- <span class="badge rounded-pill badge-notification bg-danger"
+                    >!</span -->
                 </a>
                 <div
                   ngbDropdownMenu
                   aria-labelledby="navbarDropdown3"
                   class="dropdown-menu"
                 >
-                  <a ngbDropdownItem href="#" (click)="$event.preventDefault()"
-                    >Action</a
-                  >
-                  <a ngbDropdownItem href="#" (click)="$event.preventDefault()"
-                    >Another action</a
-                  >
-                  <a ngbDropdownItem href="#" (click)="$event.preventDefault()"
-                    >Something else here</a
-                  >
+                  <a
+                    *ngIf="authService.getRol() !== 'expeditii'"
+                    [routerLink]="['transporturiEfectuate']"
+                    routerLinkActive="router-link-active"
+                    class="btn btn-lg btn-outline-info"
+                    >Transporturi efectuate <i class="fas fa-check-circle"></i
+                  ></a>
+                  <a
+                    *ngIf="authService.getRol() !== 'transportator'"
+                    [routerLink]="['veziTransporturi']"
+                    routerLinkActive="router-link-active"
+                    class="btn btn-lg btn-outline-info"
+                    >Transporturile tale <i class="fas fa-donate"></i
+                  ></a>
                 </div>
               </li>
             </ul>
@@ -109,68 +166,4 @@
       </div>
     </div>
   </div>
-
-  <!-- <div class="container-fluid text-center">
-    <div class="row">
-      <div class="col-sm-2 sidenav">
-        <a
-          *ngIf="authService.getRol() !== 'expeditii'"
-          [routerLink]="['bursaTransporturi']"
-          routerLinkActive="router-link-active"
-          class="btn btn-lg btn-outline-info"
-          >Cauta Curse<i class="fas fa-truck-loading"></i
-        ></a>
-      </div>
-
-      <div class="col-sm-2 sidenav">
-        <a
-          *ngIf="authService.getRol() !== 'expeditii'"
-          [routerLink]="['transporturiEfectuate']"
-          routerLinkActive="router-link-active"
-          class="btn btn-lg btn-outline-info"
-          >Transporturi Efectuate<i class="fas fa-truck-loading"></i
-        ></a>
-      </div>
-      <div class="col-sm-8 text-left">
-        <h2>{{ authService.decodedToken?.user.nume }}</h2>
-        <h4>
-          Adresa: {{ authService.decodedToken?.user.adresa }} C.U.I.
-          {{ authService.decodedToken?.user.cui }}
-        </h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 sidenav">
-        <a
-          *ngIf="authService.getRol() !== 'transportator'"
-          [routerLink]="['adaugaTransport']"
-          routerLinkActive="router-link-active"
-          class="btn btn-lg btn-outline-info"
-          >Adauga Curse<i class="fas fa-truck-loading"></i
-        ></a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 sidenav">
-        <a
-          *ngIf="authService.getRol() !== 'transportator'"
-          [routerLink]="['veziTransporturi']"
-          routerLinkActive="router-link-active"
-          class="btn btn-lg btn-outline-info"
-          >Vezi transporturile tale<i class="fas fa-truck-loading"></i
-        ></a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 sidenav">
-        <a
-          *ngIf="authService.getRol() !== 'transportator'"
-          [routerLink]="['tranzactii']"
-          routerLinkActive="router-link-active"
-          class="btn btn-lg btn-outline-info"
-          >Tranzactii<i class="fas fa-truck-loading"></i
-        ></a>
-      </div>
-    </div>
-  </div> -->
 </div>
