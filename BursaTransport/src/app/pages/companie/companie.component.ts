@@ -8,6 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanieComponent implements OnInit {
   constructor(public authService: AuthService) {}
-
+  collapsed = true;
   ngOnInit(): void {}
 }

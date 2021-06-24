@@ -1,6 +1,6 @@
 #back {
   background: url("../../../assets/img/V1.jpg") no-repeat center center fixed;
-  display: table;
+  /* display: table; */
   height: calc(100vh - 160px);
   width: 100%;
   position: relative;
@@ -9,18 +9,18 @@
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {
+/* .row.content {
   height: 450px;
-}
+} */
 
 /* Set gray background color and 100% height */
-.sidenav {
+/* .sidenav {
   padding-top: 20px;
   height: 100%;
-}
+} */
 
 /* On small screens, set height to 'auto' for sidenav and grid */
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
   .sidenav {
     height: auto;
     padding: 15px;
@@ -28,4 +28,4 @@
   .row.content {
     height: auto;
   }
-}
+} */
